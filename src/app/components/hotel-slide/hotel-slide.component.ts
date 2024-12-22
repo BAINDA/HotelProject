@@ -6,7 +6,7 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './hotel-slide.component.html',
-  styleUrls: ['./hotel-slide.component.css'],
+  styleUrls: ['./hotel-slide.component.scss'],
 })
 export class HotelSlideComponent {
   // Property to hold the image source for the slider

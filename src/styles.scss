@@ -1,7 +1,11 @@
+$scrollbar-color: #5e5e5e;
+$font-family: Arial, sans-serif;
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scrollbar-color: $scrollbar-color;
 }
 
 html,
@@ -12,7 +16,7 @@ body {
 
 body {
   line-height: 1.5;
-  font-family: Arial, sans-serif;
+  font-family: $font-family;
 }
 
 img,
@@ -42,8 +46,6 @@ ol {
 }
 
 /* Custom Scrollbar Styles */
-
-/* WebKit-based browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
   width: 10px;
   aspect-ratio: 1;
@@ -51,15 +53,10 @@ ol {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #5e5e5e; /* Color of the scrollbar thumb */
+  background: $scrollbar-color;
   border-radius: 12px;
 }
 
 ::-webkit-scrollbar-track {
   border-radius: 12px;
-}
-
-/* Firefox */
-* {
-  scrollbar-color: #5e5e5e;
 }

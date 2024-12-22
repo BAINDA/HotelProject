@@ -7,20 +7,19 @@ footer {
   justify-content: flex-start;
   padding-left: 80px;
   margin-top: 180px;
-}
 
-footer p {
-  color: #b8b8b8;
-  font-size: 14px;
-}
+  p {
+    color: #b8b8b8;
+    font-size: 14px;
+  }
 
-@media screen and (max-width: 1200px) {
-  footer {
+  @media screen and (max-width: 1200px) {
     justify-content: center;
     padding: 0;
     text-align: center;
-  }
-  footer p {
-    font-size: 13px;
+
+    p {
+      font-size: 13px;
+    }
   }
 }

@@ -8,7 +8,7 @@ import { FooterComponent } from './shared-components/footer/footer.component';
   standalone: true,
   imports: [NavbarComponent, RouterOutlet, FooterComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'HotelProject';

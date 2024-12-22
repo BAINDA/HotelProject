@@ -8,7 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   standalone: true,
   imports: [],
   templateUrl: './hotels.component.html',
-  styleUrls: ['./hotels.component.css'],
+  styleUrls: ['./hotels.component.scss'],
 })
 export class HotelsComponent implements OnInit {
   // Inject ApiService in constructor to make HTTP requests

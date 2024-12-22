@@ -1,0 +1,144 @@
+main {
+  margin-top: 80px;
+
+  section.hotelSlide {
+    width: 100%;
+    height: 500px;
+    position: relative;
+
+    .slideText {
+      position: absolute;
+      top: 40px;
+      right: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      color: #fff;
+
+      h1 {
+        font-size: 38px;
+      }
+
+      h2 {
+        font-size: 30px;
+      }
+
+      a {
+        text-decoration: none;
+        background: linear-gradient(90deg, #f76ab3 0%, #fc5296 100%);
+        border: 1px solid #b90a96;
+        padding: 15px 20px;
+        font-weight: bold;
+        font-size: 15px;
+        border-radius: 8px;
+        text-shadow: 0 -2px 0 #c026a1;
+        transition: 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+          background: linear-gradient(90deg, #f78fc5 0%, #f7619d 100%);
+        }
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      -o-object-fit: cover;
+      object-fit: cover;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  main {
+    section.hotelSlide {
+      .slideText {
+        h1 {
+          font-size: 28px;
+        }
+
+        h2 {
+          font-size: 20px;
+        }
+
+        a {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  main {
+    section.hotelSlide {
+      .slideText {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+
+        h1 {
+          font-size: 24px;
+        }
+
+        h2 {
+          font-size: 16px;
+        }
+
+        a {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  main {
+    section.hotelSlide {
+      .slideText {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+
+        h1 {
+          font-size: 24px;
+        }
+
+        h2 {
+          font-size: 16px;
+        }
+
+        a {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  main {
+    section.hotelSlide {
+      .slideText {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+
+        h1 {
+          font-size: 17px;
+        }
+
+        h2 {
+          font-size: 13px;
+        }
+
+        a {
+          padding: 10px 15px;
+        }
+      }
+    }
+  }
+}

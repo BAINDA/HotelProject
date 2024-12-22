@@ -8,6 +8,6 @@ import { UspSectionComponent } from '../../components/usp-section/usp-section.co
   standalone: true,
   imports: [HotelSlideComponent, FavoriteRoomsComponent, UspSectionComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent {}

@@ -9,7 +9,7 @@ import { favoriteRooms } from '../../interfaces/favorite-room-interface';
   standalone: true,
   imports: [CurrencyPipe],
   templateUrl: './favorite-rooms.component.html',
-  styleUrl: './favorite-rooms.component.css',
+  styleUrl: './favorite-rooms.component.scss',
 })
 export class FavoriteRoomsComponent implements OnInit {
   // Array to hold favorite rooms data

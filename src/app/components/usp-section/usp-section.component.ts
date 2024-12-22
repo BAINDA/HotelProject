@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [NgFor],
   templateUrl: './usp-section.component.html',
-  styleUrl: './usp-section.component.css',
+  styleUrl: './usp-section.component.scss',
 })
 export class UspSectionComponent {
   // Array to hold USP items and interpolate it in a template
