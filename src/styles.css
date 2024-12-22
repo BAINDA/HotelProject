@@ -6,6 +6,7 @@
 
 html,
 body {
+  scroll-behavior: smooth;
   height: 100%;
 }
 
@@ -38,4 +39,27 @@ a {
 ul,
 ol {
   list-style: none;
+}
+
+/* Custom Scrollbar Styles */
+
+/* WebKit-based browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 10px;
+  aspect-ratio: 1;
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #5e5e5e; /* Color of the scrollbar thumb */
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 12px;
+}
+
+/* Firefox */
+* {
+  scrollbar-color: #5e5e5e;
 }
