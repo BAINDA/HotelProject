@@ -1,0 +1,143 @@
+section.favouriteRooms {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 80px;
+  margin-top: 80px;
+}
+
+section.favouriteRooms .title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+section.favouriteRooms .title h1 {
+  color: #5e5e5e;
+  font-weight: normal;
+  font-size: 24px;
+  width: 180px;
+  margin: 0 30px;
+  text-align: center;
+  width: 380px;
+}
+
+section.favouriteRooms .title .titleLine {
+  width: 45%;
+  height: 2px;
+  border-radius: 3px;
+  background-color: rgba(182, 182, 182, 0.6);
+}
+
+section.favouriteRooms div.favouriteRoomsList {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 80px;
+  width: 100%;
+}
+
+.roomCard {
+  max-width: 400px;
+  width: 100%;
+  height: 235px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.roomCard img {
+  width: 400px;
+  height: 200px;
+  transition: 0.4s ease-in-out;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.roomCard .roomInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  gap: 20px;
+  transition: 0.4s ease-in-out;
+}
+
+.roomCard .roomInfo div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.roomCard .roomInfo div span.roomPrice {
+  color: #70d2de;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.roomCard .roomInfo div span.roomName {
+  font-weight: bold;
+  font-size: 14px;
+  color: #5e5e5e;
+}
+
+.roomCard .roomInfo button {
+  transition: 0.4s ease-in-out;
+  width: 100%;
+  background-color: #75c5cf;
+  border: 1px solid #35929e;
+  border-radius: 7px;
+  text-shadow: 0 -1px 0 #50878e;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.roomCard:hover img {
+  transform: translateY(-100%);
+  /* transform: translateX(100%) */
+}
+
+.roomCard:hover .roomInfo {
+  transform: translateY(-200%);
+}
+
+.roomCard:hover button {
+  transform: translateY(-20%);
+}
+.roomCard:hover button:hover {
+  background-color: #5d959c;
+  border: 1px solid #35929e;
+}
+
+@media screen and (max-width: 900px) {
+  section.favouriteRooms .title h1 {
+    margin: 0 5px;
+  }
+  section.favouriteRooms div.favouriteRoomsList {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  section.favouriteRooms {
+    padding: 0 5%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  section.favouriteRooms div.favouriteRoomsList {
+    grid-template-columns: auto;
+  }
+}

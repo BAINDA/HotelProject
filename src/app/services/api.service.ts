@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { favoriteRooms } from '../interfaces/favorite-room-interface';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,6 @@ export class ApiService {
   baseUrl: string = 'https://hotelbooking.stepprojects.ge/api';
 
   getFavoriteRooms(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/Rooms/GetAll`);
+    return this.http.get<favoriteRooms[]>(`${this.baseUrl}/Rooms/GetAll`);
   }
 }

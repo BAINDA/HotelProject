@@ -1,0 +1,23 @@
+<section class="favouriteRooms">
+  <div class="title">
+    <div class="titleLine"></div>
+    <h1>Guests Favorite Rooms</h1>
+    <div class="titleLine"></div>
+  </div>
+  <div class="favouriteRoomsList">
+    @for (room of favoriteRooms; track $index) {
+    <div class="roomCard">
+      <img [src]="room.images[0].source" [alt]="room.name" />
+      <div class="roomInfo">
+        <div>
+          <span class="roomName">{{ room.name }}</span>
+          <span class="roomPrice">{{
+            room.pricePerNight | currency : "USD"
+          }}</span>
+        </div>
+        <button>BOOK NOW</button>
+      </div>
+    </div>
+    }
+  </div>
+</section>
