@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './usp-section.component.css',
 })
 export class UspSectionComponent {
+  // Array to hold USP items and interpolate it in a template
   uspItems = [
     {
       icon: 'fa-martini-glass-citrus',

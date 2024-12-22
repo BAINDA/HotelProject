@@ -1,0 +1,114 @@
+section.hotels {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 10%;
+  margin-top: 80px;
+  gap: 40px;
+}
+
+section.hotels .cities {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 15px;
+  font-size: 15px;
+  color: #5e5e5e;
+  margin-top: 30px;
+}
+
+section.hotels .cities span:nth-child(1) {
+  width: 45px;
+  height: 40px;
+  background-color: #70d2de;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+section.hotels .hotels {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 30px;
+}
+
+.roomCard {
+  max-width: 400px;
+  width: 100%;
+  height: 235px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  cursor: pointer;
+}
+.roomCard img {
+  width: 400px;
+  height: 200px;
+  transition: 0.4s ease-in-out;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+.roomCard .roomInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  gap: 20px;
+  transition: 0.4s ease-in-out;
+}
+.roomCard .roomInfo div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 10px;
+}
+.roomCard .roomInfo div span.roomPrice {
+  color: #70d2de;
+  font-weight: bold;
+  font-size: 14px;
+}
+.roomCard .roomInfo button {
+  transition: 0.4s ease-in-out;
+  width: 100%;
+  background-color: #75c5cf;
+  padding: 10px 0;
+  border: 1px solid #35929e;
+  border-radius: 7px;
+  text-shadow: 0 -1px 0 #50878e;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+.roomCard:hover img {
+  transform: translateY(-100%);
+}
+.roomCard:hover .roomInfo {
+  transform: translateY(-200%);
+}
+.roomCard:hover button {
+  transform: translateY(-20%);
+}
+.roomCard:hover button:hover {
+  background-color: #5d959c;
+  border: 1px solid #35929e;
+}
+
+@media screen and (max-width: 400px) {
+  section.hotels {
+    height: auto;
+  }
+}

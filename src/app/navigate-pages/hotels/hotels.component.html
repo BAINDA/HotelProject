@@ -1,1 +1,19 @@
-<p>hotels works!</p>
+<section class="hotels">
+  <div class="cities">
+    <span>All</span>
+    <span>Tbilisi</span>
+  </div>
+  <div class="hotels">
+    @for (hotel of Hotels; track $index) {
+    <div class="roomCard">
+      <img [src]="hotel.featuredImage" [alt]="hotel.name + ' Picture'" />
+      <div class="roomInfo">
+        <div>
+          <span class="roomName">{{ hotel.name }}</span>
+        </div>
+        <button>VIEW ROOMS</button>
+      </div>
+    </div>
+    }
+  </div>
+</section>
