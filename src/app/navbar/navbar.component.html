@@ -1,12 +1,16 @@
 <nav>
   <div class="logo">
-    <a><img [src]="logoImg" [alt]="logoAlt" /></a>
+    <a routerLink="/"><img [src]="logoImg" [alt]="logoAlt" /></a>
   </div>
   <div class="navMenu">
-    <a class="activeMenu">Home</a>
-    <a>Rooms</a>
-    <a>Hotels</a>
-    <a>Booked Rooms</a>
+    <a
+      *ngFor="let link of navLinks"
+      [routerLink]="link.path"
+      routerLinkActive="activeMenu"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      {{ link.label }}
+    </a>
   </div>
   <div class="burgermenu" (click)="toggleMenu()">
     <div class="line"></div>
@@ -14,9 +18,13 @@
     <div class="line"></div>
   </div>
   <div class="mobileMenu" [class.hidden]="!isMenuOpen">
-    <a class="activeMenu">Home</a>
-    <a>Rooms</a>
-    <a>Hotels</a>
-    <a>Booked Rooms</a>
+    <a
+      *ngFor="let link of navLinks"
+      [routerLink]="link.path"
+      routerLinkActive="activeMenu"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      {{ link.label }}
+    </a>
   </div>
 </nav>
