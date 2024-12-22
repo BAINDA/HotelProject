@@ -8,19 +8,29 @@ section.favouriteRooms {
 }
 
 section.favouriteRooms .title {
-  width: 100%;
+  position: relative;
+  height: 40px;
   display: flex;
-  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+section.favouriteRooms .title::before {
+  content: "";
+  width: 80%;
+  height: 1px;
+  background: grey;
+  position: absolute;
+  top: 15px;
 }
 
 section.favouriteRooms .title h1 {
-  color: #5e5e5e;
-  font-weight: normal;
   font-size: 24px;
-  width: 180px;
-  margin: 0 30px;
+  color: #5e5e5e;
+  width: 320px;
   text-align: center;
-  width: 380px;
+  position: relative;
+  background-color: white;
 }
 
 section.favouriteRooms .title .titleLine {

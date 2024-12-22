@@ -1,0 +1,17 @@
+<section class="UspSection">
+  <div class="title">
+    <h1>USP section</h1>
+  </div>
+  <div class="usp">
+    <div class="uspBox" *ngFor="let item of uspItems">
+      <i [class]="'fa ' + item.icon + ' mainIcon'"></i>
+      <div class="texts">
+        <h1>{{ item.title }}</h1>
+        <p>{{ item.description }}</p>
+        <a [href]="item.link"
+          >Read more <i class="fa-solid fa-chevron-right"></i
+        ></a>
+      </div>
+    </div>
+  </div>
+</section>
