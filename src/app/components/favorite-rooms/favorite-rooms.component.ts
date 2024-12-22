@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../services/api.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { CurrencyPipe } from '@angular/common';
-import { favoriteRooms } from '../../interfaces/favorite-room-interface';
+import { Component, OnInit } from '@angular/core'; // Angular imports for component and lifecycle hooks.
+import { ApiService } from '../../services/api.service'; // ApiService for fetching data from the backend.
+import { CurrencyPipe } from '@angular/common'; // CurrencyPipe for formatting currency in the template.
+import { favoriteRooms } from '../../interfaces/favorite-room-interface'; // Type definition for favorite room data.
 
 @Component({
   selector: 'app-favorite-rooms',
@@ -12,46 +11,28 @@ import { favoriteRooms } from '../../interfaces/favorite-room-interface';
   styleUrl: './favorite-rooms.component.scss',
 })
 export class FavoriteRoomsComponent implements OnInit {
-  // Array to hold favorite rooms data
-  favoriteRooms: favoriteRooms[] = [];
-  // Variable to hold error messages
-  errorMessage: string | null = null;
+  favoriteRooms: favoriteRooms[] = []; // Array to hold fetched favorite room data.
+  errorMessage: string | null = null; // Variable to store error message in case of failure.
 
-  // Using constructor to inject ApiService to make HTTP requests
-  constructor(private apiService: ApiService) {}
-
-  // Lifecycle hook that runs after component initialization
+  constructor(private apiService: ApiService) {} // Inject ApiService to make API calls.
 
   ngOnInit(): void {
-    // Fetch favorite rooms when the component is initialized
+    // Fetch favorite rooms as soon as the component initializes.
     this.getFavoriteRooms();
   }
 
-  // Method to fetch favorite rooms from the API
+  // Fetch favorite rooms from the API and handle success and error cases.
   getFavoriteRooms() {
-    this.apiService.getFavoriteRooms().subscribe({
-      // Handle successful response
-      next: (data: favoriteRooms[]) => {
-        console.log(data);
-        this.favoriteRooms = data.slice(0, 6); // showing only 6 favorite rooms
-        this.errorMessage = null; // Clear any previous error messages
+    this.apiService.fetchData<favoriteRooms[]>('/Rooms/GetAll').subscribe({
+      next: (data) => {
+        // Limit the displayed rooms to the first 6 items.
+        this.favoriteRooms = data.slice(0, 6);
+        this.errorMessage = null; // Clear any previous errors.
       },
-      // Handle error response
-      error: (error: HttpErrorResponse) => {
-        this.errorMessage = this.getErrorMessage(error); // Set error message
-        console.error('Error fetching favorite rooms:', error); // Log error to console
+      error: (error) => {
+        // Capture any error from the API request and display it.
+        this.errorMessage = error;
       },
     });
-  }
-
-  // Method to generate a user-friendly error message
-  private getErrorMessage(error: HttpErrorResponse): string {
-    if (error.error instanceof ErrorEvent) {
-      // Client-side or network error
-      return `An error occurred: ${error.error.message}`;
-    } else {
-      // Backend error
-      return `Server returned code: ${error.status}, error message is: ${error.message}`;
-    }
   }
 }

@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../services/api.service';
-import { Hotels } from '../../interfaces/hotels-interface';
-import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core'; // Import Angular core modules for component functionality.
+import { ApiService } from '../../services/api.service'; // ApiService to fetch hotel data from the backend.
+import { Hotels } from '../../interfaces/hotels-interface'; // Interface for hotel data structure.
 
 @Component({
   selector: 'app-hotels',
@@ -11,45 +10,27 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./hotels.component.scss'],
 })
 export class HotelsComponent implements OnInit {
-  // Inject ApiService in constructor to make HTTP requests
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) {} // Inject ApiService for API calls.
 
-  // Array to hold all hotels data
-  Hotels: Hotels[] = [];
-  // Variable to hold error messages
-  errorMessage: string | null = null;
+  hotels: Hotels[] = []; // Store fetched hotel data.
 
-  // Lifecycle hook that runs after component initialization
+  errorMessage: string | null = null; // Store error message in case of a failed request.
+
   ngOnInit(): void {
-    // Fetch all hotels when the component is initialized
+    // Initialize component and fetch all hotels.
     this.getAllHotels();
   }
 
-  // Method to fetch all hotels from the API
+  // Fetch all hotels from the API and handle success or error responses.
   getAllHotels() {
-    this.apiService.getAllHotels().subscribe({
-      // Handle successful response
-      next: (hotels: Hotels[]) => {
-        console.log(hotels);
-        this.Hotels = hotels;
-        this.errorMessage = null; // Clear any previous error messages
+    this.apiService.fetchData<Hotels[]>('/Hotels/GetAll').subscribe({
+      next: (data) => {
+        this.hotels = data; // Assign fetched data to the hotels array.
+        this.errorMessage = null; // Clear any previous errors if the request is successful.
       },
-      // Handle error response
-      error: (error: HttpErrorResponse) => {
-        this.errorMessage = this.getErrorMessage(error); // Set error message
-        console.error('Error fetching hotels:', error); // Log error to console
+      error: (error) => {
+        this.errorMessage = error; // Store error message if request fails.
       },
     });
-  }
-
-  // Method to generate a user-friendly error message
-  private getErrorMessage(error: HttpErrorResponse): string {
-    if (error.error instanceof ErrorEvent) {
-      // Client-side or network error
-      return `An error occurred: ${error.error.message}`;
-    } else {
-      // Backend error
-      return `Server returned code: ${error.status}, error message is: ${error.message}`;
-    }
   }
 }
