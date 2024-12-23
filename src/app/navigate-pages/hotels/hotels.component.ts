@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core'; // Import Angular core modules for component functionality.
-import { ApiService } from '../../services/api.service'; // ApiService to fetch hotel data from the backend.
-import { Hotels } from '../../interfaces/hotels-interface'; // Interface for hotel data structure.
+import { Component, OnInit } from '@angular/core'; // Angular core modules for component functionality.
+import { ApiService } from '../../services/api.service'; // ApiService to fetch hotel data.
+import { Hotels } from '../../interfaces/hotels-interface'; // Hotel data structure.
 
 @Component({
   selector: 'app-hotels',
@@ -12,21 +12,20 @@ import { Hotels } from '../../interfaces/hotels-interface'; // Interface for hot
 export class HotelsComponent implements OnInit {
   constructor(private apiService: ApiService) {} // Inject ApiService for API calls.
 
-  hotels: Hotels[] = []; // Store fetched hotel data.
+  hotels: Hotels[] = []; // Holds fetched hotel data.
 
-  errorMessage: string | null = null; // Store error message in case of a failed request.
+  errorMessage: string | null = null; // Stores error message on failure.
 
   ngOnInit(): void {
-    // Initialize component and fetch all hotels.
-    this.getAllHotels();
+    this.getAllHotels(); // Fetch hotels when the component initializes.
   }
 
-  // Fetch all hotels from the API and handle success or error responses.
+  // Fetch hotels from the API and handle responses.
   getAllHotels() {
     this.apiService.fetchData<Hotels[]>('/Hotels/GetAll').subscribe({
       next: (data) => {
-        this.hotels = data; // Assign fetched data to the hotels array.
-        this.errorMessage = null; // Clear any previous errors if the request is successful.
+        this.hotels = data; // Set fetched data to hotels array.
+        this.errorMessage = null; // Clear any previous errors.
       },
       error: (error) => {
         this.errorMessage = error; // Store error message if request fails.

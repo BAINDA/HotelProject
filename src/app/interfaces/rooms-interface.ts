@@ -1,4 +1,4 @@
-export interface favoriteRooms {
+export interface Rooms {
   id: number;
   name: string;
   hotelId: number;
@@ -6,17 +6,17 @@ export interface favoriteRooms {
   available: boolean;
   maximumGuests: number;
   roomTypeId: number;
-  bookedDates: favoriteRoomsBookedDate[];
-  images: favoriteRoomsImage[];
+  bookedDates: RoomsBookedDate[];
+  images: RoomsImage[];
 }
 
-export interface favoriteRoomsBookedDate {
+export interface RoomsBookedDate {
   id: number;
   date: string;
   roomId: number;
 }
 
-export interface favoriteRoomsImage {
+export interface RoomsImage {
   id: number;
   source: string;
   roomId: number;

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core'; // Angular imports for component and lifecycle hooks.
-import { ApiService } from '../../services/api.service'; // ApiService for fetching data from the backend.
-import { CurrencyPipe } from '@angular/common'; // CurrencyPipe for formatting currency in the template.
-import { favoriteRooms } from '../../interfaces/favorite-room-interface'; // Type definition for favorite room data.
+import { Component, OnInit } from '@angular/core'; // Imports Angular core components.
+import { ApiService } from '../../services/api.service'; // ApiService for backend calls.
+import { CurrencyPipe } from '@angular/common'; // Pipe to format currency in templates.
+import { Rooms } from '../../interfaces/rooms-interface'; // Type definition for rooms.
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-favorite-rooms',
@@ -11,28 +12,32 @@ import { favoriteRooms } from '../../interfaces/favorite-room-interface'; // Typ
   styleUrl: './favorite-rooms.component.scss',
 })
 export class FavoriteRoomsComponent implements OnInit {
-  favoriteRooms: favoriteRooms[] = []; // Array to hold fetched favorite room data.
-  errorMessage: string | null = null; // Variable to store error message in case of failure.
+  favoriteRoomsList: Rooms[] = []; // Stores fetched favorite rooms data.
+  errorMessage: string | null = null; // Stores error message if the API request fails.
 
-  constructor(private apiService: ApiService) {} // Inject ApiService to make API calls.
+  constructor(private apiService: ApiService, private router: Router) {} // Inject services.
 
   ngOnInit(): void {
-    // Fetch favorite rooms as soon as the component initializes.
-    this.getFavoriteRooms();
+    this.getFavoriteRooms(); // Fetch favorite rooms when the component initializes.
   }
 
-  // Fetch favorite rooms from the API and handle success and error cases.
+  // Fetch favorite rooms and handle response.
   getFavoriteRooms() {
-    this.apiService.fetchData<favoriteRooms[]>('/Rooms/GetAll').subscribe({
+    this.apiService.fetchData<Rooms[]>('/Rooms/GetAll').subscribe({
       next: (data) => {
-        // Limit the displayed rooms to the first 6 items.
-        this.favoriteRooms = data.slice(0, 6);
-        this.errorMessage = null; // Clear any previous errors.
+        // Limit to the first 6 rooms for display.
+        this.favoriteRoomsList = data.slice(0, 6);
+        this.errorMessage = null; // Clear previous error if any.
+        console.log(this.favoriteRoomsList); // Log the rooms.
       },
       error: (error) => {
-        // Capture any error from the API request and display it.
-        this.errorMessage = error;
+        this.errorMessage = error; // Set error message on failure.
       },
     });
+  }
+
+  // Navigate to room details page.
+  navigateToRoomDetails(roomId: number) {
+    this.router.navigate(['/room-details', roomId]);
   }
 }

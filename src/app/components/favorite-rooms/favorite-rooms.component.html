@@ -3,7 +3,7 @@
     <h1>Guests Favorite Rooms</h1>
   </div>
   <div class="favouriteRoomsList">
-    @for (room of favoriteRooms; track $index) {
+    @for (room of favoriteRoomsList; track $index) {
     <div class="roomCard">
       <img [src]="room.images[0].source" [alt]="room.name" />
       <div class="roomInfo">
@@ -13,7 +13,7 @@
             room.pricePerNight | currency : "USD"
           }}</span>
         </div>
-        <button>BOOK NOW</button>
+        <button (click)="navigateToRoomDetails(room.id)">BOOK NOW</button>
       </div>
     </div>
     }
