@@ -1,11 +1,15 @@
-<p>room-details works!</p>
 <section class="detailsPage">
-  <div class="slider">
-    <div class="slides" id="sliderImages">
-      <img src="slide-bg.jpg" alt="" />
+  <div class="slider" #sliderContainer>
+    <div class="slides" [style.transform]="getSliderTransform()">
+      <img
+        *ngFor="let image of roomsImages; let i = index"
+        [src]="image"
+        [class.active]="i === currentSlide"
+        alt="Room Image"
+      />
     </div>
-    <button class="prev" onclick="changeSlide(-1)">❮</button>
-    <button class="next" onclick="changeSlide(1)">❯</button>
+    <button class="prev" (click)="prev()">❮</button>
+    <button class="next" (click)="next()">❯</button>
   </div>
   <form class="bookingForm" id="bookingForm">
     <div class="resTitle">
@@ -30,7 +34,6 @@
       <input
         type="text"
         name="customerName"
-        id=""
         placeholder="Enter Your Name"
         required
       />
@@ -40,7 +43,6 @@
       <input
         type="text"
         name="customerPhone"
-        id=""
         placeholder="Enter Your Phone"
         required
       />
@@ -49,44 +51,4 @@
       <button type="submit">BOOK NOW</button>
     </div>
   </form>
-</section>
-<section class="roomDescription">
-  <div class="left">
-    <div class="resTitle">
-      <div class="titleLine"></div>
-      <h1>Room Details</h1>
-      <div class="titleLine"></div>
-    </div>
-    <div class="overview">
-      <h3>Table Overview</h3>
-      <div>
-        <span><i class="fi fi-ss-check-circle"></i> Double Bed</span>
-        <span><i class="fi fi-ss-check-circle"></i> Free Internet</span>
-        <span><i class="fi fi-ss-check-circle"></i> Free Newspaper</span>
-        <span><i class="fi fi-ss-check-circle"></i> 60 square meter</span>
-        <span><i class="fi fi-ss-check-circle"></i> Beach view</span>
-        <span><i class="fi fi-ss-check-circle"></i> 2 persons</span>
-        <span><i class="fi fi-ss-check-circle"></i> Double Bed</span>
-        <span><i class="fi fi-ss-check-circle"></i> Free Internet</span>
-        <span><i class="fi fi-ss-check-circle"></i> Breakfast included</span>
-        <span><i class="fi fi-ss-check-circle"></i> Private Balcony</span>
-        <span><i class="fi fi-ss-check-circle"></i> Flat Screen TV</span>
-        <span><i class="fi fi-ss-check-circle"></i> Jacuzzi</span>
-      </div>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula
-        nibh, cursus id euismod non, scelerisque nec nibh. Nam semper, ligula a
-        rhoncus fermentum, libero lacus vulputate felis, id auctor mauris urna
-        quis diam.
-      </p>
-    </div>
-  </div>
-  <div class="right">
-    <div class="resTitle">
-      <div class="titleLine"></div>
-      <h1>Overview</h1>
-      <div class="titleLine"></div>
-    </div>
-    <div class="addInfo" id="addInfo"></div>
-  </div>
 </section>
