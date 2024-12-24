@@ -32,9 +32,12 @@ section.detailsPage {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: transparent;
       color: white;
       border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
       padding: 10px;
       cursor: pointer;
       z-index: 1;
@@ -49,7 +52,7 @@ section.detailsPage {
       }
 
       &:hover {
-        background-color: rgba(0, 0, 0, 0.7);
+        background-color: rgba(230, 223, 223, 0.7);
       }
     }
   }
@@ -158,6 +161,212 @@ section.detailsPage {
           border-color: #007785;
         }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .detailsPage {
+    flex-direction: column;
+  }
+
+  .detailsPage .bookingForm {
+    max-width: 700px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .detailsPage .slider {
+    width: 100%;
+  }
+
+  .detailsPage .slider .slides img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .detailsPage .bookingForm .resTitle h1 {
+    width: 100%;
+  }
+}
+
+section.roomDescription {
+  width: 100%;
+  padding: 0 10%;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 50px;
+
+  .left {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+
+    .resTitle {
+      display: flex;
+      align-items: center;
+
+      h1 {
+        color: #5e5e5e;
+        font-weight: normal;
+        font-size: 24px;
+        margin: 0 30px;
+        text-align: center;
+        width: 100%;
+      }
+
+      .titleLine {
+        width: 50%;
+        height: 2px;
+        border-radius: 3px;
+        background-color: rgba(182, 182, 182, 0.6);
+      }
+    }
+
+    .overview {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+      margin-top: 50px;
+      width: 100%;
+
+      h3 {
+        color: #5e5e5e;
+      }
+
+      p {
+        color: #535353;
+        font-size: 14px;
+        font-weight: 100;
+        margin-top: 30px;
+      }
+
+      div {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 30px;
+        margin-top: 20px;
+
+        span {
+          color: #535353;
+          font-size: 13px;
+          font-weight: 100;
+
+          i {
+            color: #70d2de;
+            padding-right: 5px;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+
+  .right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    .resTitle {
+      display: flex;
+      align-items: center;
+
+      h1 {
+        color: #5e5e5e;
+        font-weight: normal;
+        font-size: 24px;
+        margin: 0 30px;
+        text-align: center;
+        width: 380px;
+      }
+
+      .titleLine {
+        width: 50%;
+        height: 2px;
+        border-radius: 3px;
+        background-color: rgba(182, 182, 182, 0.6);
+      }
+    }
+
+    .addInfo {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin-top: 50px;
+      gap: 40px;
+
+      span {
+        color: #5e5e5e;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        position: relative;
+        font-size: 16px;
+
+        span {
+          color: #70d2de;
+          font-size: 16px;
+        }
+
+        i.fi-ss-check-circle {
+          color: rgb(5, 201, 5);
+        }
+
+        i.fi-ss-cross-circle {
+          color: rgb(255, 2, 2);
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -20px;
+          left: 0;
+          right: 0;
+          width: 100%;
+          height: 1px;
+          background-color: rgba(182, 182, 182, 0.6);
+          border-radius: 3px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    flex-direction: column;
+    gap: 70px;
+
+    .left .overview div {
+      gap: 20px;
+    }
+
+    .left .overview div span {
+      font-size: 12px;
+    }
+
+    .left .overview div span i {
+      font-size: 12px;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .left .overview div {
+      gap: 20px;
+    }
+
+    .left .overview div span {
+      font-size: 12px;
+    }
+
+    .left .overview div span i {
+      font-size: 12px;
     }
   }
 }

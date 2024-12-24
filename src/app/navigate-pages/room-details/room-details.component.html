@@ -8,8 +8,12 @@
         alt="Room Image"
       />
     </div>
-    <button class="prev" (click)="prev()">❮</button>
-    <button class="next" (click)="next()">❯</button>
+    <button class="prev" (click)="prev()">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <button class="next" (click)="next()">
+      <i class="fa-solid fa-arrow-right"></i>
+    </button>
   </div>
   <form class="bookingForm" id="bookingForm">
     <div class="resTitle">
@@ -18,8 +22,11 @@
       <div class="titleLine"></div>
     </div>
     <div class="detailRoomName" id="detailRoomName">
-      <p>premium room</p>
-      <span>$ 199 - <span class="miniInfo">a night</span></span>
+      <p>{{ roomsDetails?.name }}</p>
+      <span>
+        {{ roomsDetails?.pricePerNight | currency : "USD" }} -
+        <span class="miniInfo">a night</span></span
+      >
     </div>
     <div class="inputBox">
       <label for="checkin">Check In</label>
@@ -51,4 +58,65 @@
       <button type="submit">BOOK NOW</button>
     </div>
   </form>
+</section>
+
+<section class="roomDescription">
+  <div class="left">
+    <div class="resTitle">
+      <div class="titleLine"></div>
+      <h1>Room Details</h1>
+      <div class="titleLine"></div>
+    </div>
+    <div class="overview">
+      <h3>Table Overview</h3>
+      <div>
+        <span *ngFor="let feature of roomFeatures">
+          <i [class]="feature.icon"></i>{{ feature.description }}
+        </span>
+      </div>
+      <p>
+        Enjoy a room with a double bed for ultimate comfort, along with free
+        Wi-Fi to keep you connected and a free newspaper delivered daily. Take
+        in the beach view from your room, designed for 2 guests. Your stay
+        includes breakfast, and you'll have a private balcony for relaxing
+        moments. Entertainment is at your fingertips with a flat-screen TV, and
+        you can unwind in the jacuzzi. Stay cool with air conditioning, and
+        enjoy snacks and drinks from your mini bar. 24/7 room service ensures
+        all your needs are met throughout your stay.
+      </p>
+    </div>
+  </div>
+  <div class="right">
+    <div class="resTitle">
+      <div class="titleLine"></div>
+      <h1>Overview</h1>
+      <div class="titleLine"></div>
+    </div>
+    <div class="addInfo" id="addInfo">
+      <span
+        >Name: <span>{{ roomsDetails?.name }}</span></span
+      >
+      <span>
+        Available:
+        <i
+          *ngIf="roomsDetails?.available"
+          class="fa-solid fa-check"
+          style="color: #3963ff"
+        ></i>
+        <i
+          *ngIf="!roomsDetails?.available"
+          class="fa-solid fa-ban"
+          style="color: red"
+        ></i>
+      </span>
+      <span
+        >Price:
+        <span> {{ roomsDetails?.pricePerNight | currency : "USD" }}</span></span
+      >
+      <span
+        >Max Guests: <span>{{ roomsDetails?.maximumGuests }}</span></span
+      >
+      <span>Room ID: <span>item.id</span></span>
+    </div>
+  </div>
 </section>
