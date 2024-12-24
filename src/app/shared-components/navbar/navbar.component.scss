@@ -1,3 +1,12 @@
+// Define color variables
+$white: #ffffff;
+$darkGray: #5e5e5e;
+$lightBlue: #70d2de;
+$tealBlue: #5abac6;
+$blue: #3963ff;
+$grayBorder: rgba(182, 182, 182, 0.6);
+$black: black;
+
 nav {
   position: fixed;
   top: 0;
@@ -8,7 +17,7 @@ nav {
   width: 100%;
   height: 85px;
   padding: 0 10%;
-  background-color: #ffffff;
+  background-color: $white;
   z-index: 1000;
 
   .logo {
@@ -38,7 +47,7 @@ nav {
       top: 0;
       right: 0;
       border-radius: 3px;
-      background-color: rgba(182, 182, 182, 0.6);
+      background-color: $grayBorder;
     }
   }
 
@@ -51,19 +60,19 @@ nav {
 
     a {
       text-decoration: none;
-      color: #5e5e5e;
+      color: $darkGray;
       font-weight: bold;
       transition: 0.3s ease;
       font-size: 16px;
       cursor: pointer;
 
       &:hover {
-        color: #70d2de;
+        color: $tealBlue;
       }
     }
 
     .activeMenu {
-      color: #70d2de;
+      color: $tealBlue;
       font-weight: bold;
       transition: 0.3s ease;
     }
@@ -75,17 +84,17 @@ nav {
     gap: 5px;
     align-items: center;
     justify-content: center;
-    background-color: #ffffff;
+    background-color: $white;
     border-radius: 5px;
     width: 40px;
     height: 35px;
-    border: 2px solid #3963ff;
+    border: 2px solid $tealBlue;
     cursor: pointer;
 
     .line {
       width: 60%;
       height: 2px;
-      background-color: #3963ff;
+      background-color: $tealBlue;
       border-radius: 5px;
       transition: 0.3s ease;
     }
@@ -116,7 +125,7 @@ div.mobileMenu {
   width: 100%;
   max-height: 170px;
   height: 100%;
-  background-color: #ffffff;
+  background-color: $white;
   margin: 0 auto;
   margin-top: 82px;
   list-style: none;
@@ -126,7 +135,7 @@ div.mobileMenu {
 
   a {
     text-decoration: none;
-    color: #5e5e5e;
+    color: $darkGray;
     font-size: 15px;
     position: relative;
     width: 100%;
@@ -141,7 +150,7 @@ div.mobileMenu {
       right: 0;
       width: 100%;
       height: 1px;
-      background-color: black;
+      background-color: $black;
     }
 
     &:nth-child(4)::after {
@@ -150,7 +159,7 @@ div.mobileMenu {
   }
 
   .activeMenu {
-    color: #70d2de;
+    color: $tealBlue;
     font-weight: bold;
     transition: 0.3s ease;
   }

@@ -1,3 +1,11 @@
+// Define color variables
+$primary-color: #5abac6;
+$secondary-color: #5e5e5e;
+$tertiary-color: #707070;
+$white-color: #ffffff;
+$grey-color: grey;
+
+// UspSection styling
 section.UspSection {
   width: 100%;
   display: flex;
@@ -17,18 +25,18 @@ section.UspSection {
       content: "";
       width: 80%;
       height: 1px;
-      background: grey;
+      background: $grey-color;
       position: absolute;
       top: 15px;
     }
 
     h1 {
       font-size: 24px;
-      color: #5e5e5e;
+      color: $secondary-color;
       width: 320px;
       text-align: center;
       position: relative;
-      background-color: white;
+      background-color: $white-color;
     }
   }
 
@@ -53,19 +61,19 @@ section.UspSection {
       i.mainIcon {
         width: 80px;
         height: 80px;
-        border: 1px solid #70d2de;
+        border: 1px solid $primary-color;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #70d2de;
+        color: $primary-color;
         font-size: 20px;
         transition: 0.5s ease;
 
         &:hover {
-          color: #ffffff;
-          background-color: #70d2de;
-          border: 1px solid #70d2de;
+          color: $white-color;
+          background-color: $primary-color;
+          border: 1px solid $primary-color;
           animation: iconShake 1.2s;
         }
       }
@@ -80,18 +88,18 @@ section.UspSection {
 
         h1 {
           font-size: 18px;
-          color: #5e5e5e;
+          color: $secondary-color;
         }
 
         p {
           line-height: 25px;
           font-size: 14px;
-          color: #707070;
+          color: $tertiary-color;
         }
 
         a {
           text-decoration: none;
-          color: #70d2de;
+          color: $primary-color;
           font-weight: bold;
           transition: 0.3s ease;
 
@@ -100,7 +108,7 @@ section.UspSection {
           }
 
           &:hover {
-            color: #5e5e5e;
+            color: $secondary-color;
           }
         }
       }
@@ -108,6 +116,7 @@ section.UspSection {
   }
 }
 
+// Keyframes for icon shake animation
 @keyframes iconShake {
   0% {
     transform: rotate(15deg);

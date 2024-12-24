@@ -1,3 +1,13 @@
+// Define color variables
+$grey-color: #5e5e5e;
+$light-grey: rgba(182, 182, 182, 0.6);
+$accent-color: #70d2de;
+$button-bg-color: #75c5cf;
+$button-border-color: #35929e;
+$button-hover-bg-color: #5d959c;
+$white-color: white;
+
+// Section styles
 section.favouriteRooms {
   width: 100%;
   display: flex;
@@ -17,25 +27,25 @@ section.favouriteRooms {
       content: "";
       width: 80%;
       height: 1px;
-      background: grey;
+      background: $grey-color;
       position: absolute;
       top: 15px;
     }
 
     h1 {
       font-size: 24px;
-      color: #5e5e5e;
+      color: $grey-color;
       width: 320px;
       text-align: center;
       position: relative;
-      background-color: white;
+      background-color: $white-color;
     }
 
     .titleLine {
       width: 45%;
       height: 2px;
       border-radius: 3px;
-      background-color: rgba(182, 182, 182, 0.6);
+      background-color: $light-grey;
     }
   }
 
@@ -51,6 +61,7 @@ section.favouriteRooms {
   }
 }
 
+// Room card styles
 .roomCard {
   max-width: 400px;
   width: 100%;
@@ -87,7 +98,7 @@ section.favouriteRooms {
       padding: 0 10px;
 
       span.roomPrice {
-        color: #70d2de;
+        color: $accent-color;
         font-weight: bold;
         font-size: 14px;
       }
@@ -95,25 +106,25 @@ section.favouriteRooms {
       span.roomName {
         font-weight: bold;
         font-size: 14px;
-        color: #5e5e5e;
+        color: $grey-color;
       }
     }
 
     button {
       transition: 0.4s ease-in-out;
       width: 100%;
-      background-color: #75c5cf;
-      border: 1px solid #35929e;
+      background-color: $button-bg-color;
+      border: 1px solid $button-border-color;
       border-radius: 7px;
       text-shadow: 0 -1px 0 #50878e;
-      color: #ffffff;
+      color: $white-color;
       font-weight: bold;
       font-size: 16px;
       cursor: pointer;
 
       &:hover {
-        background-color: #5d959c;
-        border: 1px solid #35929e;
+        background-color: $button-hover-bg-color;
+        border: 1px solid $button-border-color;
       }
     }
   }
@@ -133,6 +144,7 @@ section.favouriteRooms {
   }
 }
 
+// Media Queries
 @media screen and (max-width: 900px) {
   section.favouriteRooms {
     .title h1 {

@@ -1,3 +1,21 @@
+// Define color and font size variables
+$primary-gradient-start: #f76ab3;
+$primary-gradient-end: #fc5296;
+$secondary-gradient-start: #f78fc5;
+$secondary-gradient-end: #f7619d;
+$border-color: #b90a96;
+$text-color: #fff;
+$text-shadow-color: #c026a1;
+
+$font-size-large: 38px;
+$font-size-medium: 30px;
+$font-size-small: 24px;
+$font-size-xsmall: 17px;
+
+$padding-large: 15px 20px;
+$padding-small: 10px 15px;
+
+// Main styling
 main {
   margin-top: 80px;
 
@@ -14,30 +32,38 @@ main {
       flex-direction: column;
       align-items: center;
       gap: 20px;
-      color: #fff;
+      color: $text-color;
 
       h1 {
-        font-size: 38px;
+        font-size: $font-size-large;
       }
 
       h2 {
-        font-size: 30px;
+        font-size: $font-size-medium;
       }
 
       a {
         text-decoration: none;
-        background: linear-gradient(90deg, #f76ab3 0%, #fc5296 100%);
-        border: 1px solid #b90a96;
-        padding: 15px 20px;
+        background: linear-gradient(
+          90deg,
+          $primary-gradient-start 0%,
+          $primary-gradient-end 100%
+        );
+        border: 1px solid $border-color;
+        padding: $padding-large;
         font-weight: bold;
         font-size: 15px;
         border-radius: 8px;
-        text-shadow: 0 -2px 0 #c026a1;
+        text-shadow: 0 -2px 0 $text-shadow-color;
         transition: 0.3s ease;
         cursor: pointer;
 
         &:hover {
-          background: linear-gradient(90deg, #f78fc5 0%, #f7619d 100%);
+          background: linear-gradient(
+            90deg,
+            $secondary-gradient-start 0%,
+            $secondary-gradient-end 100%
+          );
         }
       }
     }
@@ -51,16 +77,17 @@ main {
   }
 }
 
+// Responsive styles
 @media screen and (max-width: 1200px) {
   main {
     section.hotelSlide {
       .slideText {
         h1 {
-          font-size: 28px;
+          font-size: $font-size-medium;
         }
 
         h2 {
-          font-size: 20px;
+          font-size: $font-size-small;
         }
 
         a {
@@ -80,7 +107,7 @@ main {
         width: 100%;
 
         h1 {
-          font-size: 24px;
+          font-size: $font-size-small;
         }
 
         h2 {
@@ -104,7 +131,7 @@ main {
         width: 100%;
 
         h1 {
-          font-size: 24px;
+          font-size: $font-size-small;
         }
 
         h2 {
@@ -128,7 +155,7 @@ main {
         width: 100%;
 
         h1 {
-          font-size: 17px;
+          font-size: $font-size-xsmall;
         }
 
         h2 {
@@ -136,7 +163,7 @@ main {
         }
 
         a {
-          padding: 10px 15px;
+          padding: $padding-small;
         }
       }
     }

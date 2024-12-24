@@ -10,7 +10,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  logoImg: string = 'logo.svg';
+  logoImg: string = 'logo.png';
   logoAlt: string = 'Website Logo';
   isMenuOpen: boolean = false;
 
