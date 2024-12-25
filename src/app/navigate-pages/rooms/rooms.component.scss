@@ -1,0 +1,166 @@
+$primary-color: #007bff;
+$secondary-color: #f8f9fa;
+$highlight-color: #75c5cf;
+$button-hover-color: #7ecbd5;
+$shadow-color: #a6babd;
+
+header {
+  margin-top: 130px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 150px;
+}
+
+.container {
+  margin-top: 70px;
+}
+
+.selectrooms {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.selectrooms button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 7px;
+  background-color: #51a9b4;
+  color: white;
+  transition: 0.2s all ease;
+  box-shadow: 0px 0px 12px 4px $shadow-color;
+}
+
+.selectrooms button:hover {
+  background-color: $button-hover-color;
+  box-shadow: 0px 0px 13px 4px #51a9b4;
+}
+
+.bottom {
+  position: relative;
+  top: 70px;
+  box-shadow: 0px 3px 5px 2px $shadow-color;
+  border-radius: 8px;
+  height: 250px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+ngx-slider {
+  width: 250px;
+  transform: scale(0.85);
+}
+
+.bottom input,
+select {
+  padding: 10px 20px;
+  outline: none;
+  border: 1px solid $shadow-color;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.bottom p {
+  text-align: center;
+}
+
+.inputboxs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.inputboxs i {
+  color: $highlight-color;
+}
+
+.inputbuttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .bottom {
+    width: 90%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .inputboxs {
+    transform: scale(0.8);
+  }
+}
+
+/* Cards section (removed from HTML) */
+.card {
+  width: 360px;
+  height: 290px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0px 0px 25px 5px #888787;
+}
+
+.card-items {
+  width: 100%;
+  transition: 0.5s all ease;
+}
+
+.card:hover .card-items {
+  transform: translateY(-70%);
+}
+
+.card .info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.info .card-text {
+  margin-top: 10px;
+  padding: 1px 20px;
+}
+
+.info .prices {
+  background-color: rgb(236, 236, 236);
+  display: flex;
+  flex-direction: column;
+  padding: 7px 25px;
+  position: relative;
+}
+
+.info .prices .price {
+  font-weight: 600;
+  color: $highlight-color;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.info .prices .night {
+  font-size: 12px;
+  position: absolute;
+  top: 30px;
+}
+
+.card-body-top button {
+  width: 100%;
+  font-weight: bold;
+  padding: 10px 0;
+  border: none;
+  background-color: darkblue;
+  color: white;
+  transition: 0.2s all ease;
+}
+
+.card-body-top button:hover {
+  background-color: rgb(43, 105, 241);
+}
