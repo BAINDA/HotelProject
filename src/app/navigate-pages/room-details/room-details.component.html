@@ -25,12 +25,18 @@
       <p>{{ roomsDetails?.name }}</p>
       <span>
         {{ roomsDetails?.pricePerNight | currency : "USD" }} -
-        <span class="miniInfo">a night</span></span
+        <span class="miniInfo">per night</span></span
       >
     </div>
     <div class="inputBox">
       <label for="checkin">Check In</label>
-      <input type="date" name="checkInDate" id="checkin" required />
+      <input
+        type="date"
+        name="checkInDate"
+        id="checkin"
+        [min]="currentDate"
+        required
+      />
     </div>
     <div class="inputBox">
       <label for="checkout">Check out</label>

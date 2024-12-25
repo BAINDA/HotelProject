@@ -5,6 +5,7 @@ import { ApiService } from '../../services/api.service';
 import { CurrencyPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-rooms',
@@ -35,7 +36,7 @@ export class RoomsComponent implements OnInit, OnDestroy {
   defaultLowPrice: number = 300;
   defaultHighPrice: number = 1000;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private router: Router) {}
 
   ngOnInit(): void {
     this.initializeDates(); // Initialize check-in and check-out dates
@@ -134,5 +135,11 @@ export class RoomsComponent implements OnInit, OnDestroy {
   // Unsubscribe from all subscriptions to prevent memory leaks
   ngOnDestroy(): void {
     this.roomsSubscription.unsubscribe();
+  }
+
+  // Navigate to room details page
+
+  navigateToRoomDetails(roomId: number) {
+    this.router.navigate(['/room-details', roomId]);
   }
 }

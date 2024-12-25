@@ -46,6 +46,7 @@ export class RoomDetailsComponent
   currentSlide: number = 0; // Holds the current slide index for the image slider
   slideWidth: number = 0; // Store slide width
   slideInterval: any; // To hold the interval reference
+  currentDate: string = new Date().toISOString().split('T')[0]; // Current date in YYYY-MM-DD format
 
   constructor(
     private activatedRoute: ActivatedRoute, // ActivatedRoute to get route parameters

@@ -59,7 +59,7 @@
             room.pricePerNight | currency : "USD"
           }}</span>
         </div>
-        <button>BOOK NOW</button>
+        <button (click)="navigateToRoomDetails(room.id)">BOOK NOW</button>
       </div>
     </div>
     }
