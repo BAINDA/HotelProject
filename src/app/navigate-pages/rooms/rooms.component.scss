@@ -1,9 +1,9 @@
+// Color Variables
 $primary-color: #007bff;
 $secondary-color: #f8f9fa;
 $highlight-color: #75c5cf;
 $button-hover-color: #7ecbd5;
 $shadow-color: #a6babd;
-
 $grey-color: #5e5e5e;
 $light-grey: rgba(182, 182, 182, 0.6);
 $accent-color: #70d2de;
@@ -12,32 +12,35 @@ $button-border-color: #35929e;
 $button-hover-bg-color: #5d959c;
 $white-color: white;
 
+// Container
 .container {
   margin: 0 auto;
   max-width: 1300px;
 }
 
+// Select Rooms
 .selectrooms {
   display: flex;
   justify-content: flex-start;
   gap: 15px;
+
+  button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 7px;
+    background-color: #51a9b4;
+    color: white;
+    transition: 0.2s all ease;
+    box-shadow: 0px 0px 12px 4px $shadow-color;
+
+    &:hover {
+      background-color: $button-hover-color;
+      box-shadow: 0px 0px 13px 4px #51a9b4;
+    }
+  }
 }
 
-.selectrooms button {
-  padding: 8px 15px;
-  border: none;
-  border-radius: 7px;
-  background-color: #51a9b4;
-  color: white;
-  transition: 0.2s all ease;
-  box-shadow: 0px 0px 12px 4px $shadow-color;
-}
-
-.selectrooms button:hover {
-  background-color: $button-hover-color;
-  box-shadow: 0px 0px 13px 4px #51a9b4;
-}
-
+// Bottom Section
 .bottom {
   position: relative;
   top: 120px;
@@ -49,122 +52,137 @@ $white-color: white;
   justify-content: space-evenly;
   align-items: center;
   box-sizing: border-box;
-}
 
-ngx-slider {
-  width: 250px;
-  transform: scale(0.85);
-}
+  ngx-slider {
+    width: 250px;
+    transform: scale(0.85);
+  }
 
-.bottom input,
-select {
-  padding: 10px 20px;
-  outline: none;
-  border: 1px solid $shadow-color;
-  border-radius: 8px;
-  cursor: pointer;
-}
+  input,
+  select {
+    padding: 10px 20px;
+    outline: none;
+    border: 1px solid $shadow-color;
+    border-radius: 8px;
+    cursor: pointer;
+  }
 
-.bottom p {
-  text-align: center;
-}
-
-.inputboxs {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-}
-
-.inputboxs i {
-  color: $highlight-color;
-}
-
-.inputbuttons {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-@media screen and (max-width: 768px) {
-  .bottom {
-    width: 90%;
-    height: auto;
-    padding: 20px;
+  p {
+    text-align: center;
   }
 
   .inputboxs {
-    transform: scale(0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    i {
+      color: $highlight-color;
+    }
+  }
+
+  .inputbuttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .mainbtn {
+      background-color: rgb(81, 169, 180);
+      box-shadow: rgb(166, 186, 189) 0px 0px 12px 4px;
+      color: white;
+      font-weight: 600;
+      padding: 7px 25px;
+      border-width: initial;
+      border-style: none;
+      border-color: initial;
+      border-image: initial;
+      border-radius: 8px;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 90%;
+    height: auto;
+    padding: 20px;
+
+    .inputboxs {
+      transform: scale(0.8);
+    }
   }
 }
 
-/* Cards section (removed from HTML) */
+// Card Section
 .card {
   width: 360px;
   height: 290px;
   overflow: hidden;
   cursor: pointer;
   box-shadow: 0px 0px 25px 5px #888787;
+
+  .card-items {
+    width: 100%;
+    transition: 0.5s all ease;
+
+    &:hover {
+      transform: translateY(-70%);
+    }
+  }
+
+  .info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 500;
+
+    .card-text {
+      margin-top: 10px;
+      padding: 1px 20px;
+    }
+
+    .prices {
+      background-color: rgb(236, 236, 236);
+      display: flex;
+      flex-direction: column;
+      padding: 7px 25px;
+      position: relative;
+
+      .price {
+        font-weight: 600;
+        color: $highlight-color;
+        font-size: 18px;
+        letter-spacing: 1px;
+      }
+
+      .night {
+        font-size: 12px;
+        position: absolute;
+        top: 30px;
+      }
+    }
+  }
+
+  .card-body-top {
+    button {
+      width: 100%;
+      font-weight: bold;
+      padding: 10px 0;
+      border: none;
+      background-color: darkblue;
+      color: white;
+      transition: 0.2s all ease;
+
+      &:hover {
+        background-color: rgb(43, 105, 241);
+      }
+    }
+  }
 }
 
-.card-items {
-  width: 100%;
-  transition: 0.5s all ease;
-}
-
-.card:hover .card-items {
-  transform: translateY(-70%);
-}
-
-.card .info {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.info .card-text {
-  margin-top: 10px;
-  padding: 1px 20px;
-}
-
-.info .prices {
-  background-color: rgb(236, 236, 236);
-  display: flex;
-  flex-direction: column;
-  padding: 7px 25px;
-  position: relative;
-}
-
-.info .prices .price {
-  font-weight: 600;
-  color: $highlight-color;
-  font-size: 18px;
-  letter-spacing: 1px;
-}
-
-.info .prices .night {
-  font-size: 12px;
-  position: absolute;
-  top: 30px;
-}
-
-.card-body-top button {
-  width: 100%;
-  font-weight: bold;
-  padding: 10px 0;
-  border: none;
-  background-color: darkblue;
-  color: white;
-  transition: 0.2s all ease;
-}
-
-.card-body-top button:hover {
-  background-color: rgb(43, 105, 241);
-}
-
-// Section styles
+// Section: Favourite Rooms
 section.favouriteRooms {
   width: 100%;
   display: flex;
@@ -216,9 +234,29 @@ section.favouriteRooms {
     margin-top: 80px;
     width: 100%;
   }
+
+  @media screen and (max-width: 900px) {
+    .title h1 {
+      margin: 0 5px;
+    }
+
+    div.favouriteRoomsList {
+      grid-template-columns: auto auto;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 0 5%;
+  }
+
+  @media screen and (max-width: 650px) {
+    div.favouriteRoomsList {
+      grid-template-columns: auto;
+    }
+  }
 }
 
-// Room card styles
+// Room Card Styles
 .roomCard {
   max-width: 400px;
   width: 100%;
@@ -234,7 +272,6 @@ section.favouriteRooms {
     width: 400px;
     height: 200px;
     transition: 0.4s ease-in-out;
-    -o-object-fit: cover;
     object-fit: cover;
   }
 
@@ -297,33 +334,6 @@ section.favouriteRooms {
 
     button {
       transform: translateY(-20%);
-    }
-  }
-}
-
-// Media Queries
-@media screen and (max-width: 900px) {
-  section.favouriteRooms {
-    .title h1 {
-      margin: 0 5px;
-    }
-
-    div.favouriteRoomsList {
-      grid-template-columns: auto auto;
-    }
-  }
-}
-
-@media screen and (max-width: 768px) {
-  section.favouriteRooms {
-    padding: 0 5%;
-  }
-}
-
-@media screen and (max-width: 650px) {
-  section.favouriteRooms {
-    div.favouriteRoomsList {
-      grid-template-columns: auto;
     }
   }
 }

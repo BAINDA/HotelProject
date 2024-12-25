@@ -1,6 +1,6 @@
 <section class="hotels">
-  <div class="cities">
-    <button>All</button>
+  <div class="title">
+    <h1>Guests Favorite Rooms</h1>
   </div>
   <div class="hotels">
     @for (hotel of hotels; track $index) {
@@ -10,7 +10,7 @@
         <div>
           <span class="roomName">{{ hotel.name }}</span>
         </div>
-        <button>VIEW ROOMS</button>
+        <button routerLink="/rooms">VIEW ROOMS</button>
       </div>
     </div>
     }

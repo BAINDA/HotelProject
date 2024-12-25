@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core'; // Angular core modules for component functionality.
 import { ApiService } from '../../services/api.service'; // ApiService to fetch hotel data.
 import { Hotels } from '../../interfaces/hotels-interface'; // Hotel data structure.
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-hotels',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './hotels.component.html',
   styleUrls: ['./hotels.component.scss'],
 })

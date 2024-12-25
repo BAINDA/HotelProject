@@ -6,6 +6,7 @@ $white-color: #ffffff;
 $hover-color: #5d959c;
 
 // Hotels section
+
 section.hotels {
   width: 100%;
   height: 90vh;
@@ -16,35 +17,44 @@ section.hotels {
   margin-top: 80px;
   gap: 40px;
 
-  .cities {
+  .title {
+    position: relative;
+    height: 40px;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     width: 100%;
-    gap: 15px;
-    font-size: 15px;
-    color: $dark-gray;
-    margin-top: 30px;
+    margin-top: 50px;
 
-    button {
-      width: 45px;
-      height: 40px;
-      background-color: $primary-color;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: $white-color;
-      border-radius: 5px;
-      font-size: 15px;
-      cursor: pointer;
-      border: none;
+    &::before {
+      content: "";
+      width: 80%;
+      height: 1px;
+      background: $dark-gray;
+      position: absolute;
+      top: 15px;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: $dark-gray;
+      width: 320px;
+      text-align: center;
+      position: relative;
+      background-color: $white-color;
+    }
+
+    .titleLine {
+      width: 45%;
+      height: 2px;
+      border-radius: 3px;
+      background-color: $dark-gray;
     }
   }
 
   .hotels {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: wrap;
     width: 100%;
     gap: 30px;
@@ -87,7 +97,7 @@ section.hotels {
       width: 100%;
       padding: 0 10px;
 
-      span.roomPrice {
+      span.roomName {
         color: $primary-color;
         font-weight: bold;
         font-size: 14px;
@@ -129,9 +139,28 @@ section.hotels {
   }
 }
 
-// Media query for smaller screens
-@media screen and (max-width: 400px) {
+// Media Queries
+@media screen and (max-width: 900px) {
   section.hotels {
-    height: auto;
+    .title h1 {
+      margin: 0 5px;
+    }
+    .hotels {
+      grid-template-columns: auto auto;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  section.hotels {
+    padding: 0 5%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  section.hotels {
+    .hotels {
+      grid-template-columns: auto;
+    }
   }
 }
