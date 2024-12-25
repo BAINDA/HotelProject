@@ -80,15 +80,16 @@
           <i [class]="feature.icon"></i>{{ feature.description }}
         </span>
       </div>
-      <p>
-        Enjoy a room with a double bed for ultimate comfort, along with free
+      <p *ngIf="roomsDetails?.name">
+        Enjoy {{ roomsDetails?.name }} for ultimate comfort, along with free
         Wi-Fi to keep you connected and a free newspaper delivered daily. Take
-        in the beach view from your room, designed for 2 guests. Your stay
-        includes breakfast, and you'll have a private balcony for relaxing
-        moments. Entertainment is at your fingertips with a flat-screen TV, and
-        you can unwind in the jacuzzi. Stay cool with air conditioning, and
-        enjoy snacks and drinks from your mini bar. 24/7 room service ensures
-        all your needs are met throughout your stay.
+        in the beach view from your room, designed for
+        {{ roomsDetails?.maximumGuests }}
+        guests. Your stay includes breakfast, and you'll have a private balcony
+        for relaxing moments. Entertainment is at your fingertips with a
+        flat-screen TV, and you can unwind in the jacuzzi. Stay cool with air
+        conditioning, and enjoy snacks and drinks from your mini bar. 24/7 room
+        service ensures all your needs are met throughout your stay.
       </p>
     </div>
   </div>
@@ -122,7 +123,9 @@
       <span
         >Max Guests: <span>{{ roomsDetails?.maximumGuests }}</span></span
       >
-      <span>Room ID: <span>item.id</span></span>
+      <span
+        >Room Number: <span> {{ roomsDetails?.roomTypeId }}</span></span
+      >
     </div>
   </div>
 </section>

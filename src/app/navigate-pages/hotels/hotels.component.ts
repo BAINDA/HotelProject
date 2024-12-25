@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Hotels } from '../../interfaces/hotels-interface';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-hotels',
   standalone: true,
+  imports: [RouterLink],
   templateUrl: './hotels.component.html',
   styleUrls: ['./hotels.component.scss'],
 })
