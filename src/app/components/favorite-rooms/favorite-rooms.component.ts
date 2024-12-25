@@ -29,7 +29,7 @@ export class FavoriteRoomsComponent implements OnInit {
         // Limit to the first 6 rooms for display.
         this.favoriteRoomsList = data.slice(0, 6);
         this.errorMessage = null; // Clear previous error if any.
-        console.log(this.favoriteRoomsList); // Log the rooms.
+        // console.log(this.favoriteRoomsList); // Log the rooms.
       },
       error: (error) => {
         this.errorMessage = error; // Set error message on failure.

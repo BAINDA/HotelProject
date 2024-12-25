@@ -15,7 +15,7 @@
       <i class="fa-solid fa-arrow-right"></i>
     </button>
   </div>
-  <form class="bookingForm" id="bookingForm">
+  <form class="bookingForm" id="bookingForm" (ngSubmit)="onSubmitBooking()">
     <div class="resTitle">
       <div class="titleLine"></div>
       <h1>Reservation</h1>
@@ -33,6 +33,7 @@
       <input
         type="date"
         name="checkInDate"
+        [(ngModel)]="checkInDate"
         id="checkin"
         [min]="currentDate"
         required
@@ -40,13 +41,20 @@
     </div>
     <div class="inputBox">
       <label for="checkout">Check out</label>
-      <input type="date" name="checkOutDate" id="checkout" required />
+      <input
+        type="date"
+        name="checkOutDate"
+        [(ngModel)]="checkOutDate"
+        id="checkout"
+        required
+      />
     </div>
     <div class="inputBox">
       <label for="">Customer Name</label>
       <input
         type="text"
         name="customerName"
+        [(ngModel)]="customerName"
         placeholder="Enter Your Name"
         required
       />
@@ -56,6 +64,7 @@
       <input
         type="text"
         name="customerPhone"
+        [(ngModel)]="customerPhone"
         placeholder="Enter Your Phone"
         required
       />

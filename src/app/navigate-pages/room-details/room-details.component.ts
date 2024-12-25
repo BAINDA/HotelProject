@@ -12,11 +12,13 @@ import { Rooms, RoomsImage } from '../../interfaces/rooms-interface';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
+import { Booking } from '../../interfaces/booking-interface';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-room-details',
   standalone: true,
-  imports: [NgFor, CurrencyPipe, NgIf],
+  imports: [NgFor, CurrencyPipe, NgIf, FormsModule],
   templateUrl: './room-details.component.html',
   styleUrls: ['./room-details.component.scss'],
 })
@@ -47,6 +49,12 @@ export class RoomDetailsComponent
   slideWidth: number = 0; // Store slide width
   slideInterval: any; // To hold the interval reference
   currentDate: string = new Date().toISOString().split('T')[0]; // Current date in YYYY-MM-DD format
+
+  // Booking Form Variables
+  checkInDate: string = '';
+  checkOutDate: string = '';
+  customerName: string = '';
+  customerPhone: string = '';
 
   constructor(
     private activatedRoute: ActivatedRoute, // ActivatedRoute to get route parameters
@@ -123,5 +131,44 @@ export class RoomDetailsComponent
     this.currentSlide =
       (this.currentSlide - 1 + this.roomsImages.length) %
       this.roomsImages.length;
+  }
+
+  // Method to create a booking object and send it to the backend
+  onSubmitBooking() {
+    if (this.roomsDetails) {
+      // Format check-in and check-out dates to "YYYY-MM-DD"
+      const checkIn = new Date(this.checkInDate);
+      const checkOut = new Date(this.checkOutDate);
+
+      // Format the check-in and check-out dates to match backend format (YYYY-MM-DD)
+      const formattedCheckInDate = checkIn.toISOString().split('T')[0];
+      const formattedCheckOutDate = checkOut.toISOString().split('T')[0];
+
+      // Ensure customerId is populated, for example, you can get it from the logged-in user
+      const customerId = '1'; // You can replace this with the actual customer ID from your auth system
+
+      // Prepare the booking data
+      const booking: Booking = {
+        checkInDate: this.checkInDate, // use the date format without time
+        checkOutDate: this.checkOutDate, // use the date format without time
+        customerName: this.customerName,
+        customerPhone: this.customerPhone,
+        customerId: '1', // assuming customerId is static or derived elsewhere
+        isConfirmed: true,
+        roomId: this.roomsDetails?.roomTypeId, // Use roomTypeId from room details
+      };
+
+      // Make the booking API request
+      this.apiService.bookingRoom(booking).subscribe({
+        next: (response) => {
+          console.log('Booking successful:', response);
+          // Handle successful booking (e.g., show success message, navigate to confirmation page)
+        },
+        error: (error) => {
+          console.error('Error booking room:', error);
+          // Handle error (e.g., show error message to user)
+        },
+      });
+    }
   }
 }
