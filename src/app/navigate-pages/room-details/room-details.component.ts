@@ -23,6 +23,7 @@ import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
 export class RoomDetailsComponent
   implements OnInit, OnDestroy, AfterViewInit, DoCheck
 {
+  // Define room features with icons and descriptions
   roomFeatures: { icon: string; description: string }[] = [
     { icon: 'fa-solid fa-bed', description: 'Double Bed' },
     { icon: 'fa-solid fa-wifi', description: 'Free Wi-Fi' },
@@ -40,32 +41,29 @@ export class RoomDetailsComponent
 
   @ViewChild('sliderContainer', { static: false }) sliderContainer!: ElementRef;
 
-  roomsDetails: Rooms | null = null;
-  roomsImages: RoomsImage[] = [];
-  currentSlide: number = 0;
+  roomsDetails: Rooms | null = null; // Holds room details fetched from the API
+  roomsImages: RoomsImage[] = []; // Holds room images fetched from the API
+  currentSlide: number = 0; // Holds the current slide index for the image slider
   slideWidth: number = 0; // Store slide width
   slideInterval: any; // To hold the interval reference
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private apiService: ApiService,
+    private activatedRoute: ActivatedRoute, // ActivatedRoute to get route parameters
+    private apiService: ApiService, // ApiService for API requests
     private cdRef: ChangeDetectorRef // Inject ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-    const roomId = this.activatedRoute.snapshot.paramMap.get('id');
+    const roomId = this.activatedRoute.snapshot.paramMap.get('id'); // Retrieve room ID from the URL
     if (roomId) {
-      this.getRoomDetails(+roomId);
+      this.getRoomDetails(+roomId); // Fetch room details if ID is found
     }
-
-    // Start the automatic slider every 5 seconds
-    this.startAutoSlide();
+    this.startAutoSlide(); // Start the automatic slider
   }
 
   ngOnDestroy(): void {
-    // Clear the interval when the component is destroyed
     if (this.slideInterval) {
-      clearInterval(this.slideInterval);
+      clearInterval(this.slideInterval); // Clear the interval when the component is destroyed
     }
   }
 
@@ -88,26 +86,18 @@ export class RoomDetailsComponent
     }
   }
 
+  // Fetch room details based on room ID
   getRoomDetails(roomId: number) {
     this.apiService.getRoomById(roomId).subscribe({
       next: (data) => {
-        this.roomsDetails = data;
-        this.roomsImages = data.images.map((image: any) => image.source);
+        this.roomsDetails = data; // Set room details if request is successful
+        this.roomsImages = data.images.map((image: any) => image.source); // Extract image sources
+        console.log(this.roomsDetails); // Log room details for debugging
       },
       error: (error) => {
-        console.error('Error fetching room details', error);
+        console.error('Error fetching room details', error); // Log error if request fails
       },
     });
-  }
-
-  next() {
-    this.currentSlide = (this.currentSlide + 1) % this.roomsImages.length;
-  }
-
-  prev() {
-    this.currentSlide =
-      (this.currentSlide - 1 + this.roomsImages.length) %
-      this.roomsImages.length;
   }
 
   // Compute the transform for the slider position
@@ -120,5 +110,17 @@ export class RoomDetailsComponent
     this.slideInterval = setInterval(() => {
       this.next(); // Move to the next slide
     }, 5000); // Every 5 seconds
+  }
+
+  // Move to the next slide
+  next() {
+    this.currentSlide = (this.currentSlide + 1) % this.roomsImages.length;
+  }
+
+  // Move to the previous slide
+  prev() {
+    this.currentSlide =
+      (this.currentSlide - 1 + this.roomsImages.length) %
+      this.roomsImages.length;
   }
 }

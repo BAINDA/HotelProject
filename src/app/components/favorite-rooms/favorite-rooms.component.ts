@@ -1,3 +1,4 @@
+// Import necessary Angular modules and components
 import { Component, OnInit } from '@angular/core'; // Imports Angular core components.
 import { ApiService } from '../../services/api.service'; // ApiService for backend calls.
 import { CurrencyPipe } from '@angular/common'; // Pipe to format currency in templates.
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CurrencyPipe],
   templateUrl: './favorite-rooms.component.html',
-  styleUrl: './favorite-rooms.component.scss',
+  styleUrls: ['./favorite-rooms.component.scss'], // Corrected 'styleUrl' to 'styleUrls'
 })
 export class FavoriteRoomsComponent implements OnInit {
   favoriteRoomsList: Rooms[] = []; // Stores fetched favorite rooms data.

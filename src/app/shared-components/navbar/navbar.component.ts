@@ -10,10 +10,15 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
+  // This property holds the source path for the logo image
   logoImg: string = 'logo.png';
+  // This property holds the alt text for the logo image
   logoAlt: string = 'Website Logo';
+
+  // This boolean property tracks whether the menu is open or closed
   isMenuOpen: boolean = false;
 
+  // This array defines the navigation links with their paths and labels which is interpolated in a template
   navLinks = [
     { path: '/', label: 'Home' },
     { path: '/rooms', label: 'Rooms' },
@@ -21,6 +26,7 @@ export class NavbarComponent {
     { path: '/booked-rooms', label: 'Booked Rooms' },
   ];
 
+  // This method toggles the state of the menu between open and closed
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }

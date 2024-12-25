@@ -15,21 +15,21 @@ import { Subscription } from 'rxjs';
 })
 export class RoomsComponent implements OnInit, OnDestroy {
   private roomsSubscription: Subscription = new Subscription(); // Track subscriptions
-  rooms: Rooms[] = [];
-  filteredRooms: Rooms[] = [];
-  errorMessage: string | null = null;
+  rooms: Rooms[] = []; // Array to hold all rooms
+  filteredRooms: Rooms[] = []; // Array to hold filtered rooms
+  errorMessage: string | null = null; // Property to hold error messages
 
-  selectedRoomType: string = '';
-  selectedGuests: number = 1;
-  checkInDate: string = '';
-  checkOutDate: string = '';
+  selectedRoomType: string = ''; // Selected room type for filtering
+  selectedGuests: number = 1; // Selected number of guests for filtering
+  checkInDate: string = ''; // Selected check-in date
+  checkOutDate: string = ''; // Selected check-out date
   value: number = 0; // Use default low price value
   highValue: number = 1000; // Use default high price value
   options: Options = {
     floor: 0,
     ceil: 1000,
-  };
-  currentDate: string = new Date().toISOString().split('T')[0];
+  }; // Slider options for price range
+  currentDate: string = new Date().toISOString().split('T')[0]; // Current date in YYYY-MM-DD format
 
   // Default filter values
   defaultLowPrice: number = 300;
@@ -38,8 +38,8 @@ export class RoomsComponent implements OnInit, OnDestroy {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.initializeDates();
-    this.getAvailableRooms();
+    this.initializeDates(); // Initialize check-in and check-out dates
+    this.getAvailableRooms(); // Fetch all available rooms
   }
 
   // Initialize check-in and check-out dates with default values
@@ -101,6 +101,7 @@ export class RoomsComponent implements OnInit, OnDestroy {
       );
     });
   }
+
   // Check if the room is available for the selected dates
   isRoomAvailable(room: any): boolean {
     if (!this.checkInDate || !this.checkOutDate) {
