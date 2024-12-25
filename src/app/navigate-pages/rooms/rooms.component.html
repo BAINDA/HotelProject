@@ -2,7 +2,11 @@
   <div class="container bottom">
     <div class="inputboxs">
       <label>Price Per Night</label>
-      <ngx-slider></ngx-slider>
+      <ngx-slider
+        [(value)]="value"
+        [(highValue)]="highValue"
+        [options]="options"
+      ></ngx-slider>
     </div>
 
     <div class="inputboxs">
@@ -17,12 +21,12 @@
 
     <div class="inputboxs">
       <label>Check-in <i class="fa-solid fa-circle-info"></i></label>
-      <input type="date" />
+      <input type="date" [min]="currentDate" />
     </div>
 
     <div class="inputboxs">
       <label>Check-out <i class="fa-solid fa-circle-info"></i></label>
-      <input type="date" />
+      <input type="date" [min]="currentDate" />
     </div>
 
     <div class="inputboxs">
@@ -40,5 +44,24 @@
       <button class="mainbtn">APPLY FILTER</button>
       <button class="mainbtn">RESET</button>
     </div>
+  </div>
+</section>
+
+<section class="favouriteRooms">
+  <div class="favouriteRoomsList">
+    @for (room of rooms ;track $index) {
+    <div class="roomCard">
+      <img [src]="room.images[0].source" [alt]="room.name" />
+      <div class="roomInfo">
+        <div>
+          <span class="roomName">{{ room.name }}</span>
+          <span class="roomPrice">{{
+            room.pricePerNight | currency : "USD"
+          }}</span>
+        </div>
+        <button>BOOK NOW</button>
+      </div>
+    </div>
+    }
   </div>
 </section>

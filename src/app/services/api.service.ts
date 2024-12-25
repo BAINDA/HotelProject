@@ -19,4 +19,8 @@ export class ApiService {
   getRoomById(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/Rooms/GetRoom/${id}`); // Send GET request for a specific room.
   }
+
+  getAvailableRooms(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/Rooms/GetAvailableRooms`);
+  }
 }
