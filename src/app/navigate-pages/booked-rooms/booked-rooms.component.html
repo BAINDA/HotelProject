@@ -56,7 +56,6 @@
             <td>{{ booking.checkOutDate | date }}</td>
             <td>
               <p
-                (click)="showModal()"
                 [ngClass]="
                   booking.isConfirmed ? 'status approve' : 'status cancell'
                 "
@@ -68,7 +67,7 @@
               <strong> {{ booking.totalPrice | currency }} </strong>
             </td>
             <td>
-              <p (click)="cancelBooking(booking.id)" class="status cancell">
+              <p (click)="showModal(booking.id)" class="status cancell">
                 Cancel
               </p>
             </td>

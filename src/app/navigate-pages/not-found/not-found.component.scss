@@ -1,0 +1,87 @@
+$font-weight-bold: 600;
+$font-weight-extrabold: 800;
+$font-size-large: 6rem;
+$font-size-medium: 1.5rem;
+$font-size-small: 1.875rem;
+$primary-color: #75c5cf;
+$primary-hover-color: #5d959c;
+$background-light: #fafafa;
+$text-dark: #2d3748;
+$text-light: #f7fafc;
+$secondary-text: #4a5568;
+$error-code-color: #cbd5e0;
+$button-border-color: #35929e;
+
+.error-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  padding: 4rem;
+  background-color: $background-light;
+  color: $text-dark;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1.25rem;
+    margin: 2rem auto;
+
+    .content {
+      max-width: 28rem;
+      text-align: center;
+
+      .error-code {
+        margin-bottom: 2rem;
+        font-weight: $font-weight-extrabold;
+        font-size: $font-size-large;
+        color: $error-code-color;
+      }
+
+      .error-message {
+        font-size: $font-size-medium;
+        font-weight: $font-weight-bold;
+
+        &.md {
+          font-size: $font-size-small;
+        }
+      }
+
+      .additional-info {
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        color: $secondary-text;
+      }
+
+      .back-button {
+        padding: 0.75rem 2rem;
+        font-weight: $font-weight-bold;
+        border-radius: 0.375rem;
+        background-color: $primary-color;
+        color: $text-light;
+        text-decoration: none;
+        text-shadow: 0 -1px 0 #50878e;
+        transition: 0.5s;
+
+        &:hover {
+          background-color: $primary-hover-color;
+          border: 1px solid $button-border-color;
+        }
+      }
+    }
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+}

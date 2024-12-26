@@ -4,6 +4,7 @@ import { BookingResponse } from '../../interfaces/booking-interface';
 import { CurrencyPipe, DatePipe, NgClass, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-booked-rooms',
@@ -17,35 +18,22 @@ export class BookedRoomsComponent implements OnInit {
   filteredBookings: BookingResponse[] = [];
   searchTerm: string = '';
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private modalService: ModalService
+  ) {}
 
-  showModal() {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger',
-      },
-      buttonsStyling: false,
+  showModal(id: number) {
+    this.modalService.confirmCancelBooking().then((result) => {
+      if (result.isConfirmed) {
+        this.cancelBooking(id);
+        Swal.fire({
+          title: 'Cancelled!',
+          text: 'Your booking has been cancelled.',
+          icon: 'success',
+        });
+      }
     });
-    swalWithBootstrapButtons
-      .fire({
-        title: 'Are you sure you want to cancel the booking?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, cancel it!',
-        cancelButtonText: 'No, keep it!',
-        reverseButtons: true,
-      })
-      .then((result) => {
-        if (result.isConfirmed) {
-          swalWithBootstrapButtons.fire({
-            title: 'Cancelled!',
-            text: 'Your booking has been cancelled.',
-            icon: 'success',
-          });
-        }
-      });
   }
 
   getBookingDetails() {
