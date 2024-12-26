@@ -174,14 +174,15 @@ tbody tr.hide td img {
   text-align: center;
 }
 
-.status.delivered {
+.status.approve {
   background-color: #86e49d;
   color: #006b21;
 }
 
-.status.cancelled {
+.status.cancell {
   background-color: #d893a3;
   color: #b30021;
+  cursor: pointer;
 }
 
 .status.pending {
@@ -199,20 +200,10 @@ tbody tr.hide td img {
 }
 
 thead th span.icon {
-  display: inline-block;
-  width: 1.3rem;
-  height: 1.3rem;
-  border-radius: 50%;
-  border: 1.4px solid transparent;
-
-  text-align: center;
-  font-size: 1rem;
-
-  margin-left: 0.5rem;
-  transition: 0.2s ease-in-out;
-}
-
-thead th:hover span.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
 
 thead th:hover {

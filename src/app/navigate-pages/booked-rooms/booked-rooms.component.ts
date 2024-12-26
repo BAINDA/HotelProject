@@ -34,6 +34,13 @@ export class BookedRoomsComponent implements OnInit {
     );
   }
 
+  cancelBooking(id: number) {
+    this.apiService.cancelBooking(id).subscribe(() => {
+      this.getBookingDetails();
+      console.log('Booking canceled successfully');
+    });
+  }
+
   ngOnInit(): void {
     this.getBookingDetails();
   }

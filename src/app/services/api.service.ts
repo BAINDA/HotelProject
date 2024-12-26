@@ -53,4 +53,8 @@ export class ApiService {
     return this.http.get<BookingResponse[]>(`${this.baseUrl}/Booking
 `);
   }
+
+  cancelBooking(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/Booking/${id}`);
+  }
 }

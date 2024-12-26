@@ -21,7 +21,7 @@
             </th>
             <th>
               Customer
-              <span class="icon"><i class="fa-solid fa-user-tie"></i></span>
+              <span class="icon"><i class="fa-solid fa-user"></i></span>
             </th>
             <th>
               Check In
@@ -57,7 +57,7 @@
             <td>
               <p
                 [ngClass]="
-                  booking.isConfirmed ? 'status delivered' : 'status cancelled'
+                  booking.isConfirmed ? 'status approve' : 'status cancell'
                 "
               >
                 {{ booking.isConfirmed ? "Yes" : "No" }}
@@ -67,7 +67,9 @@
               <strong> {{ booking.totalPrice | currency }} </strong>
             </td>
             <td>
-              <p class="status cancelled">Cancel</p>
+              <p (click)="cancelBooking(booking.id)" class="status cancell">
+                Cancel
+              </p>
             </td>
           </tr>
         </tbody>
