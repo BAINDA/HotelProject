@@ -1,4 +1,8 @@
-// Define color and font size variables
+// ==============================
+// ** Variables **
+// ==============================
+
+// Color Variables
 $primary-gradient-start: #f76ab3;
 $primary-gradient-end: #fc5296;
 $secondary-gradient-start: #f78fc5;
@@ -7,15 +11,20 @@ $border-color: #b90a96;
 $text-color: #fff;
 $text-shadow-color: #c026a1;
 
+// Font Size Variables
 $font-size-large: 38px;
 $font-size-medium: 30px;
 $font-size-small: 24px;
 $font-size-xsmall: 17px;
 
+// Padding Variables
 $padding-large: 15px 20px;
 $padding-small: 10px 15px;
 
-// Main styling
+// ==============================
+// ** Base Styles **
+// ==============================
+
 main {
   margin-top: 80px;
 
@@ -24,6 +33,7 @@ main {
     height: 500px;
     position: relative;
 
+    // ** Slide Text Styling **
     .slideText {
       position: absolute;
       top: 40px;
@@ -43,27 +53,27 @@ main {
       }
 
       a {
-        text-decoration: none;
         background: linear-gradient(
-          90deg,
-          $primary-gradient-start 0%,
-          $primary-gradient-end 100%
+          to bottom,
+          rgba(216, 216, 216, 0.368) 0%,
+          rgba(115, 9, 9, 0) 100%
         );
-        border: 1px solid $border-color;
+        border: none;
+        box-shadow: 0px 0px 12px 4px #9a0e7e;
         padding: $padding-large;
         font-weight: bold;
         font-size: 15px;
-        border-radius: 8px;
-        text-shadow: 0 -2px 0 $text-shadow-color;
-        transition: 0.3s ease;
+        border-radius: 7px;
+        background-color: #d327b1;
+        transition: 0.4s all ease;
+        text-decoration: none;
         cursor: pointer;
+        color: #fff;
 
         &:hover {
-          background: linear-gradient(
-            90deg,
-            $secondary-gradient-start 0%,
-            $secondary-gradient-end 100%
-          );
+          background-color: #d327b1;
+          box-shadow: 0px 0px 12px 4px #d327b1;
+          padding: 16px 22px;
         }
       }
     }
@@ -71,13 +81,16 @@ main {
     img {
       width: 100%;
       height: 100%;
-      -o-object-fit: cover;
       object-fit: cover;
     }
   }
 }
 
-// Responsive styles
+// ==============================
+// ** Responsive Styles **
+// ==============================
+
+// Medium Screen (max-width: 1200px)
 @media screen and (max-width: 1200px) {
   main {
     section.hotelSlide {
@@ -98,6 +111,7 @@ main {
   }
 }
 
+// Small Screens (max-width: 900px)
 @media screen and (max-width: 900px) {
   main {
     section.hotelSlide {
@@ -122,6 +136,7 @@ main {
   }
 }
 
+// Very Small Screens (max-width: 650px)
 @media screen and (max-width: 650px) {
   main {
     section.hotelSlide {
@@ -146,6 +161,7 @@ main {
   }
 }
 
+// Extra Small Screens (max-width: 500px)
 @media screen and (max-width: 500px) {
   main {
     section.hotelSlide {
