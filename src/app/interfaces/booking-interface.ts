@@ -1,9 +1,11 @@
-export interface Booking {
+export interface BookingResponse {
+  id: number;
+  roomID: number;
   checkInDate: string;
   checkOutDate: string;
-  customerId: string;
-  customerName: string;
-  customerPhone: string;
+  totalPrice: number;
   isConfirmed: boolean;
-  roomId: number;
+  customerName: string;
+  customerId: string;
+  customerPhone: string;
 }

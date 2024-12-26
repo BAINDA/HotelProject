@@ -22,7 +22,7 @@ export class HotelsComponent implements OnInit {
 
   // Fetch hotels from the API and handle responses
   getAllHotels() {
-    this.apiService.fetchData<Hotels[]>('/Hotels/GetAll').subscribe({
+    this.apiService.getAllHotels().subscribe({
       next: (data) => {
         this.hotels = data; // Set fetched data to hotels array
         this.errorMessage = null; // Clear any previous errors

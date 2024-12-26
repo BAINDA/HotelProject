@@ -1,30 +1,20 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  ViewChild,
-  ElementRef,
-  ChangeDetectorRef,
-  AfterViewInit,
-  DoCheck,
-} from '@angular/core';
-import { Rooms, RoomsImage } from '../../interfaces/rooms-interface';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { RoomDetails, RoomImage } from '../../interfaces/rooms-interface';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
-import { Booking } from '../../interfaces/booking-interface';
+import { BookingResponse } from '../../interfaces/booking-interface';
 import { FormsModule } from '@angular/forms';
+import { SliderComponent } from '../../components/slider/slider.component';
 
 @Component({
   selector: 'app-room-details',
   standalone: true,
-  imports: [NgFor, CurrencyPipe, NgIf, FormsModule],
+  imports: [NgFor, CurrencyPipe, NgIf, FormsModule, SliderComponent],
   templateUrl: './room-details.component.html',
   styleUrls: ['./room-details.component.scss'],
 })
-export class RoomDetailsComponent
-  implements OnInit, OnDestroy, AfterViewInit, DoCheck
-{
+export class RoomDetailsComponent implements OnInit, OnDestroy {
   // Define room features with icons and descriptions
   roomFeatures: { icon: string; description: string }[] = [
     { icon: 'fa-solid fa-bed', description: 'Double Bed' },
@@ -41,13 +31,8 @@ export class RoomDetailsComponent
     { icon: 'fa-solid fa-concierge-bell', description: 'Room Service' },
   ];
 
-  @ViewChild('sliderContainer', { static: false }) sliderContainer!: ElementRef;
-
-  roomsDetails: Rooms | null = null; // Holds room details fetched from the API
-  roomsImages: RoomsImage[] = []; // Holds room images fetched from the API
-  currentSlide: number = 0; // Holds the current slide index for the image slider
-  slideWidth: number = 0; // Store slide width
-  slideInterval: any; // To hold the interval reference
+  roomsDetails: RoomDetails | null = null; // Holds room details fetched from the API
+  roomsImages: string[] = []; // Holds room images fetched from the API
   currentDate: string = new Date().toISOString().split('T')[0]; // Current date in YYYY-MM-DD format
 
   // Booking Form Variables
@@ -67,32 +52,10 @@ export class RoomDetailsComponent
     if (roomId) {
       this.getRoomDetails(+roomId); // Fetch room details if ID is found
     }
-    this.startAutoSlide(); // Start the automatic slider
   }
 
   ngOnDestroy(): void {
-    if (this.slideInterval) {
-      clearInterval(this.slideInterval); // Clear the interval when the component is destroyed
-    }
-  }
-
-  ngAfterViewInit() {
-    // Initialize the slideWidth after the view has been initialized
-    if (this.sliderContainer) {
-      this.slideWidth = this.sliderContainer.nativeElement.clientWidth;
-      this.cdRef.detectChanges(); // Trigger change detection after initialization
-    }
-  }
-
-  ngDoCheck() {
-    // Recalculate the slideWidth if the container's size has changed
-    if (
-      this.sliderContainer &&
-      this.sliderContainer.nativeElement.clientWidth !== this.slideWidth
-    ) {
-      this.slideWidth = this.sliderContainer.nativeElement.clientWidth;
-      this.cdRef.detectChanges(); // Trigger change detection again
-    }
+    // Clean up any resources if needed
   }
 
   // Fetch room details based on room ID
@@ -100,37 +63,13 @@ export class RoomDetailsComponent
     this.apiService.getRoomById(roomId).subscribe({
       next: (data) => {
         this.roomsDetails = data; // Set room details if request is successful
-        this.roomsImages = data.images.map((image: any) => image.source); // Extract image sources
+        this.roomsImages = data.images.map((image: RoomImage) => image.source); // Map RoomsImage[] to string[]
         console.log(this.roomsDetails); // Log room details for debugging
       },
       error: (error) => {
         console.error('Error fetching room details', error); // Log error if request fails
       },
     });
-  }
-
-  // Compute the transform for the slider position
-  getSliderTransform(): string {
-    return `translateX(-${this.currentSlide * this.slideWidth}px)`;
-  }
-
-  // Start the automatic slide change every 5 seconds
-  startAutoSlide() {
-    this.slideInterval = setInterval(() => {
-      this.next(); // Move to the next slide
-    }, 5000); // Every 5 seconds
-  }
-
-  // Move to the next slide
-  next() {
-    this.currentSlide = (this.currentSlide + 1) % this.roomsImages.length;
-  }
-
-  // Move to the previous slide
-  prev() {
-    this.currentSlide =
-      (this.currentSlide - 1 + this.roomsImages.length) %
-      this.roomsImages.length;
   }
 
   // Method to create a booking object and send it to the backend
@@ -148,14 +87,16 @@ export class RoomDetailsComponent
       const customerId = '1'; // You can replace this with the actual customer ID from your auth system
 
       // Prepare the booking data
-      const booking: Booking = {
-        checkInDate: this.checkInDate, // use the date format without time
-        checkOutDate: this.checkOutDate, // use the date format without time
+      const booking: BookingResponse = {
+        checkInDate: formattedCheckInDate,
+        checkOutDate: formattedCheckOutDate,
+        customerId: customerId, // Make sure this is a string and valid
         customerName: this.customerName,
         customerPhone: this.customerPhone,
-        customerId: '1', // assuming customerId is static or derived elsewhere
-        isConfirmed: true,
-        roomId: this.roomsDetails?.roomTypeId, // Use roomTypeId from room details
+        isConfirmed: true, // Assuming the booking is confirmed immediately
+        roomID: this.roomsDetails.roomTypeId, // Correct field based on the backend
+        id: 0, // This will be generated by the backend
+        totalPrice: 0, // This will be calculated by the backend
       };
 
       // Make the booking API request

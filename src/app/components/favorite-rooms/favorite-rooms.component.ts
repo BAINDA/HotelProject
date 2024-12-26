@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core'; // Imports Angular core components.
 import { ApiService } from '../../services/api.service'; // ApiService for backend calls.
 import { CurrencyPipe } from '@angular/common'; // Pipe to format currency in templates.
-import { Rooms } from '../../interfaces/rooms-interface'; // Type definition for rooms.
+import { RoomDetails } from '../../interfaces/rooms-interface';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./favorite-rooms.component.scss'], // Corrected 'styleUrl' to 'styleUrls'
 })
 export class FavoriteRoomsComponent implements OnInit {
-  favoriteRoomsList: Rooms[] = []; // Stores fetched favorite rooms data.
+  favoriteRoomsList: RoomDetails[] = []; // Stores fetched favorite rooms data.
   errorMessage: string | null = null; // Stores error message if the API request fails.
 
   constructor(private apiService: ApiService, private router: Router) {} // Inject services.
@@ -24,12 +24,11 @@ export class FavoriteRoomsComponent implements OnInit {
 
   // Fetch favorite rooms and handle response.
   getFavoriteRooms() {
-    this.apiService.fetchData<Rooms[]>('/Rooms/GetAll').subscribe({
+    this.apiService.getFavoriteRooms().subscribe({
       next: (data) => {
         // Limit to the first 6 rooms for display.
         this.favoriteRoomsList = data.slice(0, 6);
         this.errorMessage = null; // Clear previous error if any.
-        // console.log(this.favoriteRoomsList); // Log the rooms.
       },
       error: (error) => {
         this.errorMessage = error; // Set error message on failure.

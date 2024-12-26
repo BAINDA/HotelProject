@@ -1,4 +1,4 @@
-export interface Rooms {
+export interface RoomDetails {
   id: number;
   name: string;
   hotelId: number;
@@ -6,17 +6,17 @@ export interface Rooms {
   available: boolean;
   maximumGuests: number;
   roomTypeId: number;
-  bookedDates: RoomsBookedDate[];
-  images: RoomsImage[];
+  bookedDates: BookedDate[];
+  images: RoomImage[];
 }
 
-export interface RoomsBookedDate {
+export interface BookedDate {
   id: number;
   date: string;
   roomId: number;
 }
 
-export interface RoomsImage {
+export interface RoomImage {
   id: number;
   source: string;
   roomId: number;

@@ -1,37 +1,49 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Booking } from '../interfaces/booking-interface';
+import { BookingResponse } from '../interfaces/booking-interface';
+import { RoomDetails } from '../interfaces/rooms-interface';
+import { Hotels } from '../interfaces/hotels-interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
   // Base URL for API requests
+
   private baseUrl: string = 'https://hotelbooking.stepprojects.ge/api';
 
   constructor(private http: HttpClient) {}
 
-  // Generic method to fetch data from any endpoint
-  fetchData<T>(endpoint: string): Observable<T> {
-    // Send a GET request to the specified endpoint and return an Observable
-    return this.http.get<T>(`${this.baseUrl}${endpoint}`);
+  // Fetch a list of favorite rooms
+  getFavoriteRooms(): Observable<RoomDetails[]> {
+    return this.http.get<RoomDetails[]>(`${this.baseUrl}/Rooms/GetAll`);
   }
 
-  // Fetch room details by room ID
-  getRoomById(id: number): Observable<any> {
+  // Fetch a list of all hotels
+  getAllHotels(): Observable<Hotels[]> {
+    return this.http.get<Hotels[]>(`${this.baseUrl}/Hotels/GetAll`);
+  }
+
+  // Fetch details of a specific room by its ID
+  getRoomById(id: number): Observable<RoomDetails> {
     // Send a GET request to fetch details of a specific room by its ID
-    return this.http.get(`${this.baseUrl}/Rooms/GetRoom/${id}`);
+    return this.http.get<RoomDetails>(`${this.baseUrl}/Rooms/GetRoom/${id}`);
   }
 
-  // Fetch all available rooms
-  getAvailableRooms(): Observable<any> {
+  // Fetch a list of all available rooms
+  getAvailableRooms(): Observable<RoomDetails[]> {
     // Send a GET request to fetch all available rooms
-    return this.http.get(`${this.baseUrl}/Rooms/GetAvailableRooms`);
+    return this.http.get<RoomDetails[]>(
+      `${this.baseUrl}/Rooms/GetAvailableRooms`
+    );
   }
 
-  bookingRoom(bookingDetails: Booking): Observable<any> {
-    // Send a POST request with the booking details
-    return this.http.post(`${this.baseUrl}/Booking`, bookingDetails);
+  // Book a room with the provided booking details
+  bookingRoom(bookingDetails: BookingResponse): Observable<BookingResponse> {
+    return this.http.post<BookingResponse>(
+      `${this.baseUrl}/Booking`,
+      bookingDetails
+    );
   }
 }

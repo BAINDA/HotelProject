@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgxSliderModule, Options } from '@angular-slider/ngx-slider';
-import { Rooms } from '../../interfaces/rooms-interface';
+import { RoomDetails } from '../../interfaces/rooms-interface';
 import { ApiService } from '../../services/api.service';
 import { CurrencyPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -16,8 +16,8 @@ import { Router } from '@angular/router';
 })
 export class RoomsComponent implements OnInit, OnDestroy {
   private roomsSubscription: Subscription = new Subscription(); // Track subscriptions
-  rooms: Rooms[] = []; // Array to hold all rooms
-  filteredRooms: Rooms[] = []; // Array to hold filtered rooms
+  rooms: RoomDetails[] = []; // Array to hold all rooms
+  filteredRooms: RoomDetails[] = []; // Array to hold filtered rooms
   errorMessage: string | null = null; // Property to hold error messages
 
   selectedRoomType: string = ''; // Selected room type for filtering
