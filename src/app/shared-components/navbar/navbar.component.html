@@ -12,19 +12,17 @@
       {{ link.label }}
     </a>
   </div>
-  <div class="burgermenu" (click)="toggleMenu()">
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-  </div>
-  <div class="mobileMenu" [class.hidden]="!isMenuOpen">
-    <a
+
+  <div class="mobileNavigation">
+    <div
       *ngFor="let link of navLinks"
+      class="navItem"
       [routerLink]="link.path"
-      routerLinkActive="activeMenu"
+      routerLinkActive="activeItem"
       [routerLinkActiveOptions]="{ exact: true }"
     >
-      {{ link.label }}
-    </a>
+      <i [class]="'fa-solid ' + link.icon"></i>
+      <span>{{ link.label }}</span>
+    </div>
   </div>
 </nav>
