@@ -1,4 +1,7 @@
 <app-navbar />
+@if (busyService.showCustomLoader) {
+<app-loader />
+}
 <router-outlet />
 <app-back-to-top />
 <app-footer />
