@@ -5,6 +5,7 @@ import { CurrencyPipe, DatePipe, NgClass, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ModalService } from '../../services/modal.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-booked-rooms',
@@ -27,11 +28,6 @@ export class BookedRoomsComponent implements OnInit {
     this.modalService.confirmCancelBooking().then((result) => {
       if (result.isConfirmed) {
         this.cancelBooking(id);
-        Swal.fire({
-          title: 'Cancelled!',
-          text: 'Your booking has been cancelled.',
-          icon: 'success',
-        });
       }
     });
   }
@@ -53,9 +49,23 @@ export class BookedRoomsComponent implements OnInit {
   }
 
   cancelBooking(id: number) {
-    this.apiService.cancelBooking(id).subscribe(() => {
-      this.getBookingDetails();
-      console.log('Booking canceled successfully');
+    this.apiService.cancelBooking(id).subscribe({
+      next: (response: string) => {
+        // Log the response to ensure it's being handled correctly
+        console.log('Response:', response);
+
+        // If booking cancellation is successful, show success and refresh
+        this.getBookingDetails();
+        this.modalService.showSuccessMessage();
+      },
+      error: (error: HttpErrorResponse) => {
+        // In case of error, log the error and show the error message
+        console.error('Error response:', error);
+        const errorMessage =
+          error.error?.message ||
+          'An error occurred while cancelling the booking.';
+        this.modalService.showErrorMessage(errorMessage);
+      },
     });
   }
 

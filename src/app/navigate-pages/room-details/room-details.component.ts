@@ -21,7 +21,7 @@ export class RoomDetailsComponent implements OnInit, OnDestroy {
     { icon: 'fa-solid fa-wifi', description: 'Free Wi-Fi' },
     { icon: 'fa-regular fa-newspaper', description: 'Free Newspaper' },
     { icon: 'fa-solid fa-sun', description: 'Beach View' },
-    { icon: 'fa-solid fa-users', description: '2 Guests Capacity' },
+    { icon: 'fa-solid fa-users', description: '2 Guests ' },
     { icon: 'fa-solid fa-bacon', description: 'Breakfast Included' },
     { icon: 'fa-solid fa-window-maximize', description: 'Private Balcony' },
     { icon: 'fa-solid fa-tv', description: 'Flat-Screen TV' },

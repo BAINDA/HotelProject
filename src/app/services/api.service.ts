@@ -54,7 +54,9 @@ export class ApiService {
 `);
   }
 
-  cancelBooking(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/Booking/${id}`);
+  cancelBooking(id: number): Observable<string> {
+    return this.http.delete<string>(`${this.baseUrl}/Booking/${id}`, {
+      responseType: 'text' as 'json', // Tells Angular to expect a plain text response
+    });
   }
 }
