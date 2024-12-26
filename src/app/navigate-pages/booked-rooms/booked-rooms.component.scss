@@ -1,3 +1,16 @@
+// Define variables for commonly used colors and sizes
+$primary-color: #5abac6;
+$secondary-color: #86e49d;
+$error-color: #d893a3;
+$info-color: #ebc474;
+$background-color: #fff5;
+$text-color: #0004;
+$highlight-color: #fff6;
+$icon-size: 1.2rem;
+$border-radius: 2rem;
+$box-shadow: 0 0.4rem 0.8rem #0005;
+$transition-speed: 0.2s;
+
 @media print {
   .table,
   .table__body {
@@ -7,6 +20,7 @@
   }
 }
 
+// Wrapper Styles
 .wrapper {
   display: flex;
   justify-content: center;
@@ -14,19 +28,19 @@
   margin-top: 100px;
 }
 
+// Icon Styles
 i {
   cursor: pointer;
 }
 
+// Table Styles
 main.table {
   width: 82vw;
   height: 90vh;
-  background-color: #fff5;
-
+  background-color: $background-color;
   backdrop-filter: blur(7px);
-  box-shadow: 0 0.4rem 0.8rem #0005;
+  box-shadow: $box-shadow;
   border-radius: 0.8rem;
-
   overflow: hidden;
 }
 
@@ -38,260 +52,191 @@ main.table {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-}
 
-.table__header .input-group {
-  width: 35%;
-  height: 100%;
-  background-color: #fff5;
-  padding: 0 0.8rem;
-  border-radius: 2rem;
-  border: 1px solid #5abac6;
+  .input-group {
+    width: 35%;
+    height: 100%;
+    background-color: $background-color;
+    padding: 0 0.8rem;
+    border-radius: $border-radius;
+    border: 1px solid $primary-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: $transition-speed;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    &:hover {
+      width: 45%;
+      background-color: #fff8;
+      box-shadow: 0 0.1rem 0.4rem $text-color;
+    }
 
-  transition: 0.2s;
-}
+    img {
+      width: $icon-size;
+      height: $icon-size;
+    }
 
-.table__header .input-group:hover {
-  width: 45%;
-  background-color: #fff8;
-  box-shadow: 0 0.1rem 0.4rem #0002;
-}
-
-.table__header .input-group img {
-  width: 1.2rem;
-  height: 1.2rem;
-}
-
-.table__header .input-group input {
-  width: 100%;
-  padding: 0 0.5rem 0 0.3rem;
-  background-color: transparent;
-  border: none;
-  outline: none;
+    input {
+      width: 100%;
+      padding: 0 0.5rem 0 0.3rem;
+      background-color: transparent;
+      border: none;
+      outline: none;
+    }
+  }
 }
 
 .table__body {
   width: 95%;
   max-height: calc(89% - 1.6rem);
   background-color: #fffb;
-
   margin: 0.8rem auto;
   border-radius: 0.6rem;
-
   overflow: auto;
   overflow: overlay;
-}
 
-.table__body::-webkit-scrollbar {
-  width: 0.5rem;
-  height: 0.5rem;
-}
+  ::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
 
-.table__body::-webkit-scrollbar-thumb {
-  border-radius: 0.5rem;
-  background-color: #0004;
-  visibility: hidden;
-}
+  ::-webkit-scrollbar-thumb {
+    border-radius: 0.5rem;
+    background-color: $text-color;
+    visibility: hidden;
+  }
 
-.table__body:hover::-webkit-scrollbar-thumb {
-  visibility: visible;
+  &:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+  }
 }
 
 table {
   width: 100%;
-}
 
-td img {
-  width: 36px;
-  height: 36px;
-  margin-right: 0.5rem;
-  border-radius: 50%;
+  td img {
+    width: 36px;
+    height: 36px;
+    margin-right: 0.5rem;
+    border-radius: 50%;
+    vertical-align: middle;
+  }
 
-  vertical-align: middle;
-}
+  th,
+  td {
+    padding: 1rem;
+    text-align: center;
+  }
 
-table,
-th,
-td {
-  border-collapse: collapse;
-  padding: 1rem;
-  text-align: center;
-}
+  thead th {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    cursor: pointer;
+    text-transform: capitalize;
 
-thead th {
-  position: sticky;
-  top: 0;
-  left: 0;
-  background-color: #fff;
-  cursor: pointer;
-  text-transform: capitalize;
-}
+    .icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+    }
 
-tbody tr:nth-child(even) {
-  background-color: #0000000b;
-}
+    &:hover {
+      color: $primary-color;
+    }
 
-tbody tr {
-  --delay: 0.1s;
-  transition: 0.5s ease-in-out var(--delay), background-color 0s;
-}
+    &.active {
+      color: $primary-color;
 
-tbody tr.hide {
-  opacity: 0;
-  transform: translateX(100%);
-}
+      .icon {
+        background-color: $primary-color;
+        color: #fff;
+      }
 
-tbody tr:hover {
-  background-color: #fff6 !important;
-}
+      &.asc .icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
 
-tbody tr td,
-tbody tr td p,
-tbody tr td img {
-  transition: 0.2s ease-in-out;
-}
+  tbody tr:nth-child(even) {
+    background-color: #0000000b;
+  }
 
-tbody tr.hide td,
-tbody tr.hide td p {
-  padding: 0;
-  font: 0 / 0 sans-serif;
-  transition: 0.2s ease-in-out 0.5s;
-}
+  tbody tr {
+    --delay: 0.1s;
+    transition: 0.5s ease-in-out var(--delay), background-color 0s;
 
-tbody tr.hide td img {
-  width: 0;
-  height: 0;
-  transition: 0.2s ease-in-out 0.5s;
-}
+    &.hide {
+      opacity: 0;
+      transform: translateX(100%);
 
-.status {
-  padding: 0.4rem 0;
-  border-radius: 2rem;
-  text-align: center;
-}
+      td,
+      p {
+        padding: 0;
+        font: 0 / 0 sans-serif;
+      }
 
-.status.approve {
-  background-color: #86e49d;
-  color: #006b21;
-}
+      img {
+        width: 0;
+        height: 0;
+      }
+    }
 
-.status.cancell {
-  background-color: #d893a3;
-  color: #b30021;
-  cursor: pointer;
-}
+    &:hover {
+      background-color: $highlight-color !important;
+    }
 
-.status.pending {
-  background-color: #ebc474;
-}
-
-.status.shipped {
-  background-color: #6fcaea;
-}
-
-@media (max-width: 1000px) {
-  td:not(:first-of-type) {
-    min-width: 12.1rem;
+    td,
+    p,
+    img {
+      transition: 0.2s ease-in-out;
+    }
   }
 }
 
-thead th span.icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-}
-
-thead th:hover {
-  color: #5abac6;
-}
-
-thead th.active span.icon {
-  background-color: #5abac6;
-  color: #fff;
-}
-
-thead th.asc span.icon {
-  transform: rotate(180deg);
-}
-
-thead th.active,
-tbody td.active {
-  color: #5abac6;
-}
-
-.export__file {
-  position: relative;
-}
-
-.export__file .export__file-btn {
-  display: inline-block;
-  width: 2rem;
-  height: 2rem;
-  background: #fff6 url(/slide-bg.jpg) center / 80% no-repeat;
-  border-radius: 50%;
-  transition: 0.2s ease-in-out;
-}
-
-.export__file .export__file-btn:hover {
-  background-color: #fff;
-  transform: scale(1.15);
-  cursor: pointer;
-}
-
-.export__file .export__file-options {
-  position: absolute;
-  right: 0;
-
-  width: 12rem;
-  border-radius: 0.5rem;
-  overflow: hidden;
+// Status Styling
+.status {
+  padding: 0.4rem 0;
+  border-radius: $border-radius;
   text-align: center;
 
-  opacity: 0;
-  transform: scale(0.8);
-  transform-origin: top right;
+  &.approve {
+    background-color: $secondary-color;
+    color: #006b21;
+  }
 
-  box-shadow: 0 0.2rem 0.5rem #0004;
-
-  transition: 0.2s;
+  &.cancell {
+    background-color: $error-color;
+    color: #b30021;
+    cursor: pointer;
+  }
 }
 
-.export__file input:checked + .export__file-options {
-  opacity: 1;
-  transform: scale(1);
-  z-index: 100;
-}
-
-.export__file .export__file-options label {
-  display: block;
-  width: 100%;
-  padding: 0.6rem 0;
-  background-color: #f2f2f2;
-
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  transition: 0.2s ease-in-out;
-}
-
-.export__file .export__file-options label:first-of-type {
-  padding: 1rem 0;
-  background-color: #86e49d !important;
-}
-
-.export__file .export__file-options label:hover {
-  transform: scale(1.05);
-  background-color: #fff;
+// Buttons Styling
+::ng-deep .btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
+  font-size: 16px;
+
+  &.btn-success {
+    background-color: #28a745;
+    color: white;
+  }
+
+  &.btn-danger {
+    background-color: #dc3545;
+    color: white;
+  }
 }
 
-.export__file .export__file-options img {
-  width: 2rem;
-  height: auto;
+// SweetAlert Button Gap
+::ng-deep .swal2-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
