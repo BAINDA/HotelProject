@@ -35,9 +35,8 @@ main.table {
   height: 10%;
   background-color: #fff4;
   padding: 0.8rem 1rem;
-
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -47,6 +46,7 @@ main.table {
   background-color: #fff5;
   padding: 0 0.8rem;
   border-radius: 2rem;
+  border: 1px solid #5abac6;
 
   display: flex;
   justify-content: center;
@@ -126,7 +126,7 @@ thead th {
   position: sticky;
   top: 0;
   left: 0;
-  background-color: #d5d1defe;
+  background-color: #fff;
   cursor: pointer;
   text-transform: capitalize;
 }
@@ -213,15 +213,14 @@ thead th span.icon {
 }
 
 thead th:hover span.icon {
-  border: 1.4px solid #6c00bd;
 }
 
 thead th:hover {
-  color: #6c00bd;
+  color: #5abac6;
 }
 
 thead th.active span.icon {
-  background-color: #6c00bd;
+  background-color: #5abac6;
   color: #fff;
 }
 
@@ -231,7 +230,7 @@ thead th.asc span.icon {
 
 thead th.active,
 tbody td.active {
-  color: #6c00bd;
+  color: #5abac6;
 }
 
 .export__file {
@@ -251,10 +250,6 @@ tbody td.active {
   background-color: #fff;
   transform: scale(1.15);
   cursor: pointer;
-}
-
-.export__file input {
-  display: none;
 }
 
 .export__file .export__file-options {

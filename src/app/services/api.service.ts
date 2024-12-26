@@ -46,4 +46,11 @@ export class ApiService {
       bookingDetails
     );
   }
+
+  // Fetch a list of all bookings
+
+  getBookings(): Observable<BookingResponse[]> {
+    return this.http.get<BookingResponse[]>(`${this.baseUrl}/Booking
+`);
+  }
 }
