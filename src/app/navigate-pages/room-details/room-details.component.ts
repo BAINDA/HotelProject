@@ -1,20 +1,33 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { RoomDetails, RoomImage } from '../../interfaces/rooms-interface';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
 import { BookingResponse } from '../../interfaces/booking-interface';
-import { FormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { SliderComponent } from '../../components/slider/slider.component';
 
 @Component({
   selector: 'app-room-details',
   standalone: true,
-  imports: [NgFor, CurrencyPipe, NgIf, FormsModule, SliderComponent],
+  imports: [
+    NgFor,
+    CurrencyPipe,
+    NgIf,
+    FormsModule,
+    SliderComponent,
+    ReactiveFormsModule,
+  ],
   templateUrl: './room-details.component.html',
   styleUrls: ['./room-details.component.scss'],
 })
-export class RoomDetailsComponent implements OnInit, OnDestroy {
+export class RoomDetailsComponent implements OnInit {
   // Define room features with icons and descriptions
   roomFeatures: { icon: string; description: string }[] = [
     { icon: 'fa-solid fa-bed', description: 'Double Bed' },
@@ -33,13 +46,8 @@ export class RoomDetailsComponent implements OnInit, OnDestroy {
 
   roomsDetails: RoomDetails | null = null; // Holds room details fetched from the API
   roomsImages: string[] = []; // Holds room images fetched from the API
-  currentDate: string = new Date().toISOString().split('T')[0]; // Current date in YYYY-MM-DD format
-
-  // Booking Form Variables
-  checkInDate: string = '';
-  checkOutDate: string = '';
-  customerName: string = '';
-  customerPhone: string = '';
+  currentDate: string = new Date().toISOString().split('T')[0]; // Current date in YYYY-MM-DD format\
+  postForm!: FormGroup;
 
   constructor(
     private activatedRoute: ActivatedRoute, // ActivatedRoute to get route parameters
@@ -48,14 +56,13 @@ export class RoomDetailsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const roomId = this.activatedRoute.snapshot.paramMap.get('id'); // Retrieve room ID from the URL
-    if (roomId) {
-      this.getRoomDetails(+roomId); // Fetch room details if ID is found
-    }
-  }
-
-  ngOnDestroy(): void {
-    // Clean up any resources if needed
+    this.formData(); // Initialize the form first
+    this.activatedRoute.params.subscribe((params) => {
+      // Get room ID from route parameters
+      const roomId = params['id'];
+      // Fetch room details based on room ID
+      this.getRoomDetails(roomId);
+    });
   }
 
   // Fetch room details based on room ID
@@ -64,7 +71,9 @@ export class RoomDetailsComponent implements OnInit, OnDestroy {
       next: (data) => {
         this.roomsDetails = data; // Set room details if request is successful
         this.roomsImages = data.images.map((image: RoomImage) => image.source); // Map RoomsImage[] to string[]
-        console.log(this.roomsDetails); // Log room details for debugging
+        console.log(this.roomsDetails); // Log room details for
+        // debugging
+        this.cdRef.detectChanges(); // Detect changes to update the view
       },
       error: (error) => {
         console.error('Error fetching room details', error); // Log error if request fails
@@ -72,44 +81,41 @@ export class RoomDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  // Method to create a booking object and send it to the backend
-  onSubmitBooking() {
-    if (this.roomsDetails) {
-      // Format check-in and check-out dates to "YYYY-MM-DD"
-      const checkIn = new Date(this.checkInDate);
-      const checkOut = new Date(this.checkOutDate);
+  formData() {
+    this.postForm = new FormGroup({
+      checkIn: new FormControl('', Validators.required),
+      checkOut: new FormControl('', Validators.required),
+      userName: new FormControl('', Validators.required),
+      userPhone: new FormControl('', Validators.required),
+    });
+  }
 
-      // Format the check-in and check-out dates to match backend format (YYYY-MM-DD)
-      const formattedCheckInDate = checkIn.toISOString().split('T')[0];
-      const formattedCheckOutDate = checkOut.toISOString().split('T')[0];
-
-      // Ensure customerId is populated, for example, you can get it from the logged-in user
-      const customerId = '1'; // You can replace this with the actual customer ID from your auth system
-
-      // Prepare the booking data
-      const booking: BookingResponse = {
-        checkInDate: formattedCheckInDate,
-        checkOutDate: formattedCheckOutDate,
-        customerId: customerId, // Make sure this is a string and valid
-        customerName: this.customerName,
-        customerPhone: this.customerPhone,
-        isConfirmed: true, // Assuming the booking is confirmed immediately
-        roomID: this.roomsDetails.roomTypeId, // Correct field based on the backend
-        id: 0, // This will be generated by the backend
-        totalPrice: 0, // This will be calculated by the backend
-      };
-
-      // Make the booking API request
-      this.apiService.bookingRoom(booking).subscribe({
-        next: (response) => {
-          console.log('Booking successful:', response);
-          // Handle successful booking (e.g., show success message, navigate to confirmation page)
-        },
-        error: (error) => {
-          console.error('Error booking room:', error);
-          // Handle error (e.g., show error message to user)
-        },
-      });
+  postRoomBooking(): void {
+    if (this.postForm.invalid) {
+      return;
     }
+
+    const bookingDetails: BookingResponse = {
+      id: 0, // Default value, will be set by the server
+      roomID: this.roomsDetails!.id,
+      checkInDate: this.postForm.value.checkIn,
+      checkOutDate: this.postForm.value.checkOut,
+      totalPrice: 0, // Default value, will be calculated by the server
+      isConfirmed: false, // Default value, will be set by the server
+      customerName: this.postForm.value.userName,
+      customerId: '', // Default value, should be set appropriately
+      customerPhone: this.postForm.value.userPhone,
+    };
+
+    this.apiService.bookingRoom(bookingDetails).subscribe({
+      next: (response) => {
+        // Handle successful booking
+        console.log('Booking successful:', response);
+      },
+      error: (error) => {
+        // Handle booking error
+        console.error('Booking error:', error);
+      },
+    });
   }
 }

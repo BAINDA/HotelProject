@@ -3,7 +3,6 @@ import { ApiService } from '../../services/api.service';
 import { BookingResponse } from '../../interfaces/booking-interface';
 import { CurrencyPipe, DatePipe, NgClass, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import Swal from 'sweetalert2';
 import { ModalService } from '../../services/modal.service';
 import { HttpErrorResponse } from '@angular/common/http';
 

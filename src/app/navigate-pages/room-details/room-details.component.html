@@ -1,7 +1,13 @@
 <section class="detailsPage">
   <app-slider [images]="roomsImages"></app-slider>
 
-  <form class="bookingForm" id="bookingForm" (ngSubmit)="onSubmitBooking()">
+  <form
+    class="bookingForm"
+    id="bookingForm"
+    id="bookingForm"
+    [formGroup]="postForm"
+    (ngSubmit)="postRoomBooking()"
+  >
     <div class="resTitle">
       <div class="titleLine"></div>
       <h1>Reservation</h1>
@@ -18,45 +24,79 @@
       <label for="checkin">Check In</label>
       <input
         type="date"
-        name="checkInDate"
-        [(ngModel)]="checkInDate"
-        id="checkin"
+        formControlName="checkIn"
+        name="checkIn"
+        id="checkIn"
         [min]="currentDate"
-        required
       />
+      <div
+        *ngIf="
+          postForm.get('checkIn')?.invalid &&
+          (postForm.get('checkIn')?.dirty || postForm.get('checkIn')?.touched)
+        "
+        class="error"
+      >
+        Check-in date is required.
+      </div>
     </div>
     <div class="inputBox">
       <label for="checkout">Check out</label>
       <input
         type="date"
-        name="checkOutDate"
-        [(ngModel)]="checkOutDate"
-        id="checkout"
-        required
+        formControlName="checkOut"
+        name="checkOut"
+        id="checkOut"
+        [min]="postForm.get('checkOut')?.value"
       />
+      <div
+        *ngIf="
+          postForm.get('checkOut')?.invalid &&
+          (postForm.get('checkOut')?.dirty || postForm.get('checkOut')?.touched)
+        "
+        class="error"
+      >
+        Check-out date is required.
+      </div>
     </div>
     <div class="inputBox">
       <label for="">Customer Name</label>
       <input
         type="text"
-        name="customerName"
-        [(ngModel)]="customerName"
+        name="userName"
+        formControlName="userName"
         placeholder="Enter Your Name"
-        required
       />
+      <div
+        *ngIf="
+          postForm.get('userName')?.invalid &&
+          (postForm.get('userName')?.dirty || postForm.get('userName')?.touched)
+        "
+        class="error"
+      >
+        Name is required.
+      </div>
     </div>
     <div class="inputBox">
       <label for="">Customer Phone</label>
       <input
         type="text"
-        name="customerPhone"
-        [(ngModel)]="customerPhone"
+        formControlName="userPhone"
+        name="userPhone"
         placeholder="Enter Your Phone"
-        required
       />
+      <div
+        *ngIf="
+          postForm.get('userPhone')?.invalid &&
+          (postForm.get('userPhone')?.dirty ||
+            postForm.get('userPhone')?.touched)
+        "
+        class="error"
+      >
+        Phone number is required.
+      </div>
     </div>
     <div class="btns">
-      <button type="submit">BOOK NOW</button>
+      <button type="submit" [disabled]="postForm.invalid">Book Room</button>
     </div>
   </form>
 </section>
