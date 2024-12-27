@@ -12,6 +12,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { SliderComponent } from '../../components/slider/slider.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-room-details',
@@ -108,13 +109,41 @@ export class RoomDetailsComponent implements OnInit {
     };
 
     this.apiService.bookingRoom(bookingDetails).subscribe({
-      next: (response) => {
-        // Handle successful booking
-        console.log('Booking successful:', response);
+      next: (response: string) => {
+        // Assuming the response is plain text
+        console.log('Booking response:', response);
+
+        if (response.includes('Booking retrieved successfully')) {
+          Swal.fire({
+            title: 'Booking Successful!',
+            text: `You have successfully booked the room: ${this.roomsDetails?.name}. 
+                   Your total price per night is: ${this.roomsDetails?.pricePerNight} USD.`,
+            imageUrl: this.roomsImages[0] || 'https://unsplash.it/400/200',
+            imageWidth: 400,
+            imageHeight: 200,
+            imageAlt: 'Room Image',
+            confirmButtonText: 'Close',
+          });
+
+          // Reset the form after booking
+          this.postForm.reset();
+        } else {
+          Swal.fire({
+            title: 'Error!',
+            text: 'There was an issue with your booking.',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        }
       },
       error: (error) => {
-        // Handle booking error
         console.error('Booking error:', error);
+        Swal.fire({
+          title: 'Error!',
+          text: 'There was an issue with your booking.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
       },
     });
   }

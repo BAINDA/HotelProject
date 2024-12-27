@@ -40,11 +40,10 @@ export class ApiService {
   }
 
   // Book a room with the provided booking details
-  bookingRoom(bookingDetails: BookingResponse): Observable<BookingResponse> {
-    return this.http.post<BookingResponse>(
-      `${this.baseUrl}/Booking`,
-      bookingDetails
-    );
+  bookingRoom(bookingDetails: BookingResponse): Observable<string> {
+    return this.http.post<string>(`${this.baseUrl}/Booking`, bookingDetails, {
+      responseType: 'text' as 'json', // Specify that the response is plain text
+    });
   }
 
   // Fetch a list of all bookings
