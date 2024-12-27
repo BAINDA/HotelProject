@@ -11,7 +11,7 @@ export class ModalService {
       text: "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: '#5ABAC6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, cancel it!',
       cancelButtonText: 'No, keep it!',

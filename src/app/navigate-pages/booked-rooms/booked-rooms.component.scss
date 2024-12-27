@@ -1,8 +1,9 @@
 // Define variables for commonly used colors and sizes
 $primary-color: #5abac6;
 $secondary-color: #86e49d;
-$error-color: #d893a3;
+$error-color: #dd3333;
 $info-color: #ebc474;
+$white-color: #ffffff;
 $background-color: #fff5;
 $text-color: #0004;
 $highlight-color: #fff6;
@@ -26,11 +27,6 @@ $transition-speed: 0.2s;
   justify-content: center;
   align-items: center;
   margin-top: 100px;
-}
-
-// Icon Styles
-i {
-  cursor: pointer;
 }
 
 // Table Styles
@@ -64,6 +60,7 @@ main.table {
     justify-content: center;
     align-items: center;
     transition: $transition-speed;
+    cursor: pointer;
 
     &:hover {
       width: 45%;
@@ -133,7 +130,6 @@ table {
     top: 0;
     left: 0;
     background-color: #fff;
-    cursor: pointer;
     text-transform: capitalize;
 
     .icon {
@@ -205,12 +201,12 @@ table {
 
   &.approve {
     background-color: $secondary-color;
-    color: #006b21;
+    color: $white-color;
   }
 
   &.cancell {
     background-color: $error-color;
-    color: #b30021;
+    color: $white-color;
     cursor: pointer;
   }
 }
@@ -225,12 +221,12 @@ table {
 
   &.btn-success {
     background-color: #28a745;
-    color: white;
+    color: $white-color;
   }
 
   &.btn-danger {
-    background-color: #dc3545;
-    color: white;
+    background-color: $error-color;
+    color: $white-color;
   }
 }
 
