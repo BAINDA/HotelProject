@@ -140,7 +140,7 @@ export class RoomDetailsComponent implements OnInit {
         console.error('Booking error:', error);
         Swal.fire({
           title: 'Error!',
-          text: 'There was an issue with your booking.',
+          text: 'This room is already booked.',
           icon: 'error',
           confirmButtonText: 'OK',
         });

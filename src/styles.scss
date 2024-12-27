@@ -1,6 +1,7 @@
 $scrollbar-color: #5abac6;
 $font-family: "Poppins", sans-serif;
 
+/* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -19,6 +20,7 @@ body {
   font-family: $font-family;
 }
 
+/* Media and Visual Elements */
 img,
 picture,
 video,
@@ -28,6 +30,7 @@ svg {
   max-width: 100%;
 }
 
+/* Form Elements */
 input,
 button,
 textarea,
@@ -35,11 +38,13 @@ select {
   font: inherit;
 }
 
+/* Links */
 a {
   text-decoration: none;
   color: inherit;
 }
 
+/* Lists */
 ul,
 ol {
   list-style: none;
