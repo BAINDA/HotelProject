@@ -170,3 +170,29 @@ section.favouriteRooms {
     }
   }
 }
+
+/*--------------------------------------------------------------
+   Skeleton image placeholder for loading state
+--------------------------------------------------------------*/
+.skeleton-img {
+  width: 400px;
+  height: 200px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.skeleton {
+  opacity: 0.7;
+  animation: skeleton-loading 1s linear infinite alternate;
+  margin-bottom: 0.25rem;
+  border: 0.125rem;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 70%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}

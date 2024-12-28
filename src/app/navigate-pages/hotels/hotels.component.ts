@@ -13,6 +13,7 @@ import { RouterLink } from '@angular/router';
 export class HotelsComponent implements OnInit {
   hotels: Hotels[] = []; // Array to hold all hotels
   errorMessage: string | null = null; // Property to hold error messages
+  skeletonArray: number[] = Array(3).fill(0); // Array with 6 elements
 
   constructor(private apiService: ApiService) {}
 

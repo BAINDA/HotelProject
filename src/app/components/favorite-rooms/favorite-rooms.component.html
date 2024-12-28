@@ -16,6 +16,12 @@
         <button (click)="navigateToRoomDetails(room.id)">BOOK NOW</button>
       </div>
     </div>
-    }
+    } @empty { @for (skeleton of skeletonArray; track $index) {
+
+    <div class="skeleton skeleton-img">
+      <div class="skeleton-img"></div>
+    </div>
+
+    } }
   </div>
 </section>

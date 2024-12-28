@@ -16,6 +16,8 @@ export class FavoriteRoomsComponent implements OnInit {
   favoriteRoomsList: RoomDetails[] = []; // Stores fetched favorite rooms data.
   errorMessage: string | null = null; // Stores error message if the API request fails.
 
+  skeletonArray: number[] = Array(6).fill(0); // Array with 6 elements
+
   constructor(private apiService: ApiService, private router: Router) {} // Inject services.
 
   ngOnInit(): void {

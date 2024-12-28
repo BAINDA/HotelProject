@@ -19,6 +19,7 @@ export class RoomsComponent implements OnInit, OnDestroy {
   rooms: RoomDetails[] = []; // Array to hold all rooms
   filteredRooms: RoomDetails[] = []; // Array to hold filtered rooms
   errorMessage: string | null = null; // Property to hold error messages
+  skeletonArray: number[] = Array(6).fill(0); // Array with 6 elements
 
   selectedRoomType: string = ''; // Selected room type for filtering
   selectedGuests: number = 1; // Selected number of guests for filtering
