@@ -12,7 +12,7 @@
 
 ## 🖼️ Preview
 
-![Star Hotel Preview](https://github.com/user-attachments/assets/0641a0bb-8fd4-4526-8462-aace89b66872)
+![Star Hotel Preview](https://github.com/user-attachments/assets/52dc6a10-e323-480f-a96e-500b9900830d)
 
 ---
 
